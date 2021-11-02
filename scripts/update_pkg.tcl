@@ -20,10 +20,11 @@ puts "-------------"
 puts "-------------"
 puts "Reading build information"
 puts "-------------"
-set git_log [open [pwd]/.git/ORIG_HEAD r]
 
+# Get GIT commit info
+set git_oid_log [open [pwd]/.git/ORIG_HEAD r]
 set git_commit_oid_hex "0x"
-while { [gets $git_log data] >= 0 } {
+while { [gets $git_oid_log data] >= 0 } {
     append git_commit_oid_hex $data
 }
 
