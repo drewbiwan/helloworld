@@ -13,10 +13,10 @@ source [pwd]/scripts/project_settings.tcl
 source $synth_dir/hardware_settings.tcl
 
 puts ""
-puts "-------------"
+puts "--------------------------"
 puts -nonewline "Updating packages for "
 puts $hardware_name
-puts "-------------"
+puts "--------------------------"
 
 puts ""
 puts "-------------"
@@ -29,16 +29,21 @@ puts -nonewline "Minor version: "
 puts $minor_version
 
 # look at build log to determine new build number
-set build_log_f [open $build_dir/buildlog.txt a+]
-set last_line ""
+set build_log_f [open $build_dir/buildlog.txt r+]
+set last_build_number 0
+# run through log file, only store the last
 while { [gets $build_log_f data] >= 0 } {
-    #run through all lines, only care about last line
-    set last_line $data
+    set ll_split [split $data ","]
+    puts "llsplit 0"
+    puts [lindex $ll_split 0]
+    # check for valid log data
+    if {[lindex $ll_split 0]  == "LOG"} { 
+        set last_build_number [lindex $ll_split 3]
+    }
 }
-set ll_split [split $last_line ","]
-if {[lindex $ll_split 0] == "LOG"} {
-    set last_build_number [lindex [split $last_line ","] 3]
-} else {
+
+# If no logs were found, start fresh
+if {$last_build_number == 0} {
     puts -nonewline "WARNING: No build log found at "
     puts $build_dir/buildlog.txt
     puts "New file will be generated, and builds will start at 1"
