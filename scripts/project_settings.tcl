@@ -15,6 +15,9 @@ set hardware_name devboard
 set major_version 0
 set minor_version 0
 
+# Run parameters
+set num_jobs 8
+
 # Directory structure
 set synth_dir [pwd]/firmware/synth_$hardware_name
 set contraints_dir $synth_dir/constraints

@@ -6,14 +6,22 @@
 #   Vivado project should have already been created by create.tcl
 #   all files should be committed, and update_pkg.tcl should have been run
 
-# Project settings
-set project_name helloworld
-set hardware_name devboard
-set fpga_device XC7Z020-CLG484-1
+puts ""
+puts "-------------"
+puts -nonewline "Running Compile Script for project in "
+puts [pwd]
+puts "-------------"
 
-# Directory structure
-set synth_dir [pwd]/firmware/synth_$hardware_name
-set contraints_dir $synth_dir/constraints
-set hdl_dir $synth_dir/hdl
-set shared_hdl_dir [pwd]/firmware/shared_hdl
-set shared_ip_dir $shared_hdl_dir/shared_ip
+# Load project specific settings
+source [pwd]/scripts/project_settings.tcl 
+
+# Load hardware/build specific settings
+source $synth_dir/hardware_settings.tcl
+
+# Compile
+launch_runs synth_1 -jobs $num_jobs
+wait_on_run synth_1
+launch_runs impl_1 -jobs $num_jobs
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream  -jobs $num_jobs
+wait_on_run impl_1
