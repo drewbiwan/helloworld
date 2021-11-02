@@ -3,15 +3,15 @@
 # 11/2/2021
 # This should be run after pulling from repo, or as a clean slate (after running clean.sh in synth directory)
 puts "-------------"
-puts -nonewline "Running Create Script in "
-puts $[pwd]
+puts -nonewline "Running Create Script for project in "
+puts [pwd]
 puts "-------------"
 
-# Load Project specific settings
-source $synth_dir/hardware_settings.tcl
+# Load project specific settings
+source [pwd]/scripts/project_settings.tcl 
 
-# Load hardware specific settings
-source [pwd]/scripts/project_settings.tcl
+# Load hardware/build specific settings
+source $synth_dir/hardware_settings.tcl
 
 # Create Vivado Project
 puts "-------------"

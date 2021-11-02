@@ -13,13 +13,19 @@ source [pwd]/scripts/project_settings.tcl
 source $synth_dir/hardware_settings.tcl
 
 puts "-------------"
-puts "Updating packages"
+puts -nonewline "Updating packages for "
+puts $hardware_name
 puts "-------------"
 
 puts "-------------"
-puts "Reading GIT information"
+puts "Reading build information"
 puts "-------------"
-set git_log [open [pwd]/.git/HEAD r]
+set git_log [open [pwd]/.git/ORIG_HEAD r]
+
+set git_commit_oid_hex "0x"
 while { [gets $git_log data] >= 0 } {
-   puts $data
+    append git_commit_oid_hex $data
 }
+
+puts -nonewline "Commit ID "
+puts $git_commit_oid_hex
