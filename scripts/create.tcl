@@ -1,10 +1,11 @@
-# create script for vivado
+# create script 
+# Drew Coker 
+# 11/2/2021
+# This should be run after pulling from repo, or as a clean slate (after running clean.sh in synth directory)
 puts "-------------"
 puts -nonewline "Running Create Script in "
 puts $[pwd]
 puts "-------------"
-
-# Project settings
 
 # Directory structure
 set synth_dir [pwd]/firmware/[lindex $argv 0]
@@ -97,3 +98,10 @@ update_compile_order -fileset sources_1
 set_property STEPS.WRITE_BITSTREAM.ARGS.BIN_FILE true [get_runs impl_1]
 set_property coreContainer.enable 1 [current_project]
 set_property top $top_level [current_fileset]
+set_property default_lib work [current_project]
+
+# Set hardware specific Vivado properties
+puts "-------------"
+puts "Setting hardware specific files"
+puts "-------------"
+hardware_tcl

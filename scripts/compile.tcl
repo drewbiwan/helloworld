@@ -1,4 +1,10 @@
 # compile script for vivado
+# Drew Coker 
+# 11/2/2021
+# This synthesizes, implements, and generates bitstreams. 
+# Prereqs:
+#   Vivado project should have already been created by create.tcl
+#   all files should be committed, and update_pkg.tcl should have been run
 
 # Project settings
 set project_name helloworld
