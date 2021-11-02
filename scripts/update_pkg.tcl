@@ -12,3 +12,14 @@ source $synth_dir/hardware_settings.tcl
 # Load hardware specific settings
 source [pwd]/scripts/project_settings.tcl
 
+puts "-------------"
+puts "Updating packages"
+puts "-------------"
+
+puts "-------------"
+puts "Reading GIT information"
+puts "-------------"
+set git_log [open [pwd]/.git/HEAD r]
+while { [gets $fp data] >= 0 } {
+   puts $data
+}

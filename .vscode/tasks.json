@@ -7,12 +7,18 @@
         {
             "label": "create",
             "type": "shell",
-            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create.tcl synth_devboard"
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create.tcl synth_devboard",
+            "problemMatcher": []
         },
         {
             "label": "compile",
             "type": "shell",
             "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile.tcl"
+        },
+        {
+            "label": "update_pkg",
+            "type": "shell",
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//update_pkg.tcl"
         }
     ]
 }
