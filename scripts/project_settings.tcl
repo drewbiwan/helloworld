@@ -1,0 +1,2 @@
+set project_name helloworld
+set hardware_name devboard

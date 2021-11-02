@@ -1,0 +1,18 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "command": "hw",
+    "tasks": [
+        {
+            "label": "create",
+            "type": "shell",
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create.tcl synth_devboard"
+        },
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile.tcl"
+        }
+    ]
+}
