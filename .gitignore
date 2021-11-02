@@ -1,2 +1,11 @@
-vivado.jou
-vivado.log
+*.jou
+*.log
+*.lpr
+*.xpr
+
+
+*.hw/**
+*.sim/**
+*.cache/**
+*.ip_user_files/**
+*.runs/**
