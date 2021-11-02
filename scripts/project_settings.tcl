@@ -11,11 +11,16 @@ set project_name helloworld
 #  the active one is specified here
 set hardware_name devboard
 
+# Version information. These are updated manually
+set major_version 0
+set minor_version 0
+
 # Directory structure
 set synth_dir [pwd]/firmware/synth_$hardware_name
 set contraints_dir $synth_dir/constraints
 set hdl_dir $synth_dir/hdl
 set ip_dir $synth_dir/ip
+set build_dir $synth_dir/builds
 
 set firmware_dir [pwd]/firmware
 set shared_hdl_dir $firmware_dir/shared_hdl

@@ -2,6 +2,8 @@
 # Drew Coker 
 # 11/2/2021
 # This should be run after pulling from repo, or as a clean slate (after running clean.sh in synth directory)
+
+puts ""
 puts "-------------"
 puts -nonewline "Running Create Script for project in "
 puts [pwd]
@@ -14,6 +16,7 @@ source [pwd]/scripts/project_settings.tcl
 source $synth_dir/hardware_settings.tcl
 
 # Create Vivado Project
+puts ""
 puts "-------------"
 puts -nonewline "Creating Vivado Project "
 puts $project_name
@@ -28,6 +31,7 @@ puts "-------------"
 create_project $project_name $synth_dir -part $fpga_device -force
 
 # Read HDL and IP
+puts ""
 puts "-------------"
 puts -nonewline "Reading hardware specific HDL in "
 puts $hdl_dir
@@ -39,6 +43,7 @@ foreach f [glob -nocomplain $hdl_dir/*.vhd] {
     read_vhdl $f
 }
 
+puts ""
 puts "-------------"
 puts -nonewline "Reading hardware specific IP in "
 puts $ip_dir
@@ -50,6 +55,7 @@ foreach f [glob -nocomplain $ip_dir/*.xcix] {
     read_ip $f
 }
 
+puts ""
 puts "-------------"
 puts -nonewline "Reading shared HDL in "
 puts $shared_hdl_dir
@@ -61,6 +67,7 @@ foreach f [glob -nocomplain $shared_hdl_dir/*.vhd] {
     read_vhdl $f
 }
 
+puts ""
 puts "-------------"
 puts -nonewline "Reading shared IP in "
 puts $shared_ip_dir
@@ -72,6 +79,7 @@ foreach f [glob -nocomplain $shared_ip_dir/*.xcix] {
     read_ip $f
 }
 
+puts ""
 puts "-------------"
 puts -nonewline "Reading constraints in "
 puts $contraints_dir
@@ -92,6 +100,7 @@ set_property top $top_level [current_fileset]
 set_property default_lib work [current_project]
 
 # Set hardware specific Vivado properties
+puts ""
 puts "-------------"
 puts "Setting hardware specific files"
 puts "-------------"
