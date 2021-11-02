@@ -12,6 +12,9 @@ source [pwd]/scripts/project_settings.tcl
 # Load hardware specific settings
 source $synth_dir/hardware_settings.tcl
 
+# Load buildlog functions
+source [pwd]/scripts/buildlog.tcl 
+
 puts ""
 puts "--------------------------"
 puts -nonewline "Updating packages for "
@@ -29,27 +32,8 @@ puts -nonewline "Minor version: "
 puts $minor_version
 
 # look at build log to determine new build number
-set build_log_f [open $build_dir/buildlog.txt r+]
-set last_build_number 0
-# run through log file, only store the last
-while { [gets $build_log_f data] >= 0 } {
-    set ll_split [split $data ","]
-    puts "llsplit 0"
-    puts [lindex $ll_split 0]
-    # check for valid log data
-    if {[lindex $ll_split 0]  == "LOG"} { 
-        set last_build_number [lindex $ll_split 3]
-    }
-}
-
-# If no logs were found, start fresh
-if {$last_build_number == 0} {
-    puts -nonewline "WARNING: No build log found at "
-    puts $build_dir/buildlog.txt
-    puts "New file will be generated, and builds will start at 1"
-    set last_build_number 0
-    puts $build_log_f "MAJOR, MINOR, BUILD, DATE, EPOCH, BRANCH, OID, SYNTH?"
-}
+set old_buildlog_list [get_last_buildlog $build_dir/buildlog.txt]
+set last_build_number [lindex $old_buildlog_list 3]
 set new_build_number [expr $last_build_number + 1]
 
 puts -nonewline "Last build number: "
@@ -98,9 +82,9 @@ puts "-------------"
 puts "Writing to log"
 puts "-------------"
 #"MAJOR, MINOR, BUILD, DATE, EPOCH, BRANCH, OID, SYNTH?"
-set log_format "LOG,%s,%s,%s,%s,%s,%s,%s,%s"
-puts $build_log_f [format $log_format $major_version $minor_version $new_build_number $time_yymmddhh_hex $build_time_hex $git_branch_string $git_commit_oid_hex "NO"]
-close $build_log_f
+set log_format "LOG,%s,%s,%s,%s,%s,%s,%s"
+set buildlog_list [format $log_format $major_version $minor_version $new_build_number $time_yymmddhh_hex $build_time_hex $git_branch_string $git_commit_oid_hex]
+append_buildlog $build_dir/buildlog.txt $buildlog_list
 
 puts ""
 puts "-------------"
