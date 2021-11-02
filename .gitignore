@@ -4,8 +4,8 @@
 *.xpr
 
 
-*.hw/**
-*.sim/**
-*.cache/**
-*.ip_user_files/**
-*.runs/**
+*.hw
+*.sim
+*.cache
+*.ip_user_files
+*.runs

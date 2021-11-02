@@ -7,15 +7,6 @@ puts -nonewline "Running Create Script in "
 puts $[pwd]
 puts "-------------"
 
-# Directory structure
-set synth_dir [pwd]/firmware/[lindex $argv 0]
-set contraints_dir $synth_dir/constraints
-set hdl_dir $synth_dir/hdl
-set ip_dir $synth_dir/ip
-set firmware_dir [pwd]/firmware
-set shared_hdl_dir $firmware_dir/shared_hdl
-set shared_ip_dir $firmware_dir/shared_ip
-
 # Load Project specific settings
 source $synth_dir/hardware_settings.tcl
 
