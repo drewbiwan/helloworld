@@ -29,3 +29,4 @@ PRESYNTH: 0 0 15 0x21110314 0x6182CE24 refs/heads/main 0xccc72c0af1eec55d77b86f6
 POSTSYNTH: 0 0 15 DEV0 v0.0.15 helloworld_devboard_0_0_15.bin 
 PRESYNTH: 0 0 16 0x21110314 0x6182CEEE refs/heads/main 0xcb1e49cca5c2b71cc971b56f97cdd6270bd12de0 DEV0 
 POSTSYNTH: 0 0 16 DEV0 v0.0.16 helloworld_devboard_0_0_16.bin 
+PRESYNTH: 0 0 17 21110314 6182D04B refs/heads/main 1d8e2c04f102430e9ad48a59d7bdb9fcc4b64a61 DEV0 
