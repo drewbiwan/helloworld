@@ -9,3 +9,4 @@
 *.cache
 *.ip_user_files
 *.runs
+*.lock
