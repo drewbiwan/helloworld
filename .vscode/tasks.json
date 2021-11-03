@@ -14,7 +14,9 @@
             "label": "compile",
             "type": "shell",
             "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile.tcl synth_devboard",
-            "problemMatcher": []
+            "problemMatcher": [
+                "$eslint-stylish"
+            ]
         }
     ]
 }

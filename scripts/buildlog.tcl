@@ -91,8 +91,6 @@ proc append_buildlog_postsynth {build_file bitstream_string} {
 
 proc generate_build_pkg {build_pkg_file buildlog_list} {
     set build_pkg_f [open $build_pkg_file w+]
-    puts "TEST, BUILD PKG"
-    puts $buildlog_list
 
     puts  $build_pkg_f "----------------"
     puts  $build_pkg_f "-- build_pkg.vhd"

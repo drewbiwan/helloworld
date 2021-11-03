@@ -39,6 +39,7 @@ puts "Appending Log and creating build_pkg.vhd:"
 append_buildlog $build_dir/buildlog.txt $presynth_buildlog_list
 
 generate_build_pkg $hdl_dir/build_pkg.vhd $presynth_buildlog_list
+read_vhdl $hdl_dir/build_pkg.vhd
 puts "-------------"
 
 # Auto commit
