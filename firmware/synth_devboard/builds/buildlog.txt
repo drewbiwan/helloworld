@@ -3,3 +3,5 @@ DO NOT EDIT
 This is an automatically generated file. See buildlog.tcl for details
 PRESYNTH: 0 0 1 0x21110312 0x6182BFD1 refs/heads/main 0x290cf4acf32f8a4eb4131a79aa2666f3c914c779 DEV0 
 POSTSYNTH: 0 0 1 DEV0 helloworld_devboard_0_0_1.bin 
+PRESYNTH: 0 0 2 0x21110313 0x6182C035 refs/heads/main 0xc5a4b0690788c781f22ee5547c550a02a7daafe1 DEV0 
+POSTSYNTH: 0 0 2 DEV0 helloworld_devboard_0_0_2.bin 
