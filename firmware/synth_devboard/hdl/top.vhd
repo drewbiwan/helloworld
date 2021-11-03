@@ -8,7 +8,7 @@ library ieee;
 use ieee.numeric_std.all;
 use ieee.std_logic_1164.all;
 
-use work.build_pkg.vhd;
+use work.build_pkg.all;
 
 entity top is
     port 
