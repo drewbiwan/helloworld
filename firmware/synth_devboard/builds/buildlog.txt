@@ -14,3 +14,6 @@ POSTSYNTH: 0 0 5 DEV0 v0.0.5 helloworld_devboard_0_0_5.bin
 PRESYNTH: 0 0 6 0x21110313 0x6182C7F1 refs/heads/main 0xddecd1f0a5af64383eaf027b13f5ba9d2897d802 DEV0 
 PRESYNTH: 0 0 7 0x21110313 0x6182C83F refs/heads/main 0xddecd1f0a5af64383eaf027b13f5ba9d2897d802 DEV0 
 POSTSYNTH: 0 0 7 DEV0 v0.0.7 helloworld_devboard_0_0_7.bin 
+PRESYNTH: 0 0 8 0x21110313 0x6182C85A refs/heads/main 0xe24d9c67fd4df4845dfae97b6c6a78713648e41e DEV0 
+PRESYNTH: 0 0 9 0x21110313 0x6182C87C refs/heads/main 0xe24d9c67fd4df4845dfae97b6c6a78713648e41e DEV0 
+POSTSYNTH: 0 0 9 DEV0 v0.0.9 helloworld_devboard_0_0_9.bin 
