@@ -9,7 +9,9 @@ set project_name helloworld
 # hardware build name. 
 #  there should be a directory in firmware for each hardware build
 #  the active one is specified here
-set hardware_name devboard
+set hardware_name devboard 
+# this string can be read from build_pkg.vhd. Should be 4 characters long to fit into 32bits
+set hardware_string DEV0
 
 # Version information. These are updated manually
 set major_version 0

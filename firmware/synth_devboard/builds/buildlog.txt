@@ -1,6 +1,10 @@
-MAJOR, MINOR, BUILD, DATE, EPOCH, BRANCH, OID, SYNTH?
-LOG,0,0,1,0x21110216,0x61819FDA,refs/heads/hwbranch,0x492e8e2af4834261fb3c113cef187a64e7d16c88,NO
-LOG,0,0,2,0x21110216,0x6181A0C2,refs/heads/main,0x38151f1b778e0f3fb9545c76c78bf6acdee22f0c,no
-LOG,0,0,2,0x21110216,0x6181A0C2,refs/heads/main,0x38151f1b778e0f3fb9545c76c78bf6acdee22f0c,no,helloworld_devboard_0_0_2.bin
-LOG,0,0,3,0x21110219,0x6181CD03,refs/heads/main,0x5349fe0efa37e653ab07c71984bbb02c727d130b,helloworld_devboard_0_0_3.bin
-LOG,0,0,4,0x21110219,0x6181CD48,refs/heads/main,0x5349fe0efa37e653ab07c71984bbb02c727d130b,helloworld_devboard_0_0_4.bin
+MAJOR MINOR BUILD DATE EPOCH BRANCH OID SYNTH?
+
+
+LOG: 0 0 1 0x21110220 0x6181D175 refs/heads/main 0x1d319e4464014f7891390d12ee14a83a8ea09e41 helloworld_devboard_0_0_1.bin
+
+LOG: 0 0 2 0x21110220 0x6181D186 refs/heads/main 0x1d319e4464014f7891390d12ee14a83a8ea09e41 helloworld_devboard_0_0_2.bin
+
+LOG: 0 0 3 0x21110310 0x61829FA1 refs/heads/main 0x56f3ab3bc3f39de4cac1ad0aded1c3691359da53 
+
+LOG: 0 0 4 0x21110310 0x61829FCB refs/heads/main 0x56f3ab3bc3f39de4cac1ad0aded1c3691359da53 helloworld_devboard_0_0_4.bin

@@ -83,8 +83,15 @@ puts "Writing to log"
 puts "-------------"
 #"MAJOR, MINOR, BUILD, DATE, EPOCH, BRANCH, OID, SYNTH?"
 set log_format "LOG: %s %s %s %s %s %s %s"
-set buildlog_list [format $log_format $major_version $minor_version $new_build_number $time_yymmddhh_hex $build_time_hex $git_branch_string $git_commit_oid_hex]
+set buildlog_list [format $log_format $major_version $minor_version $new_build_number $time_yymmddhh_hex $build_time_hex $git_branch_string $git_commit_oid_hex $hardware_name]
 append_buildlog_presynth $build_dir/buildlog.txt $buildlog_list
+
+puts ""
+puts "-------------"
+puts -nonewline "Generating new pkg file in "
+puts $hdl_dir/build_pkg.vhd
+puts "-------------"
+generate_build_pkg $hdl_dir/build_pkg.vhd buildlog_list
 
 puts ""
 puts "-------------"

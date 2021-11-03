@@ -51,3 +51,28 @@ proc append_buildlog_postsynth {build_file bitstream_string} {
     close $build_log_f
     return 1
 }
+
+proc generate_build_pkg {build_pkg_file buildlog_list} {
+    set build_pkg_f [open $build_pkg_file w+]
+    puts  $build_pkg_f "----------------"
+    puts  $build_pkg_f "-- build_pkg.vhd"
+    puts  $build_pkg_f "-- DO NOT EDIT"
+    puts  $build_pkg_f "-- This is an automatically generated file. See buildlog.tcl for details"
+    puts  $build_pkg_f "-- Drew Coker"
+    puts  $build_pkg_f "-- November 2021"
+    puts  $build_pkg_f "----------------"
+    puts  $build_pkg_f "library ieee;"
+    puts  $build_pkg_f "use ieee.numeric_std.all;"
+    puts  $build_pkg_f "use ieee.std_logic_1164.all;"
+    puts  $build_pkg_f "package build_pkg is"
+    puts  $build_pkg_f [format "    constant MAJOR_VERSON_C     : integer := %s;" [lindex buildlog_list 1]]
+    puts  $build_pkg_f [format "    constant MINOR_VERSON_C     : integer := %s;" [lindex buildlog_list 2]]
+    puts  $build_pkg_f [format "    constant BUILD_NUMBER_C     : integer := %s;" [lindex buildlog_list 3]]
+    puts  $build_pkg_f [format "    constant BUILD_TIME_BCD_C   : STD_LOGIC_VECTOR(31 downto 0) := %s;" [lindex buildlog_list 4]]
+    puts  $build_pkg_f [format "    constant BUILD_TIME_EPOCH_C : STD_LOGIC_VECTOR(31 downto 0) := %s;" [lindex buildlog_list 5]]
+    puts  $build_pkg_f [format "    constant BRANCH_STRING_C    : string := \"%s\";" [lindex buildlog_list 6]]
+    puts  $build_pkg_f [format "    constant COMMIT_OID_C       : STD_LOGIC_VECTOR(159 downto 0) := %s;" [lindex buildlog_list 7]]
+    puts  $build_pkg_f [format "    constant HARDWARE_STRING_C    : string := \"%s\";" [lindex buildlog_list 8]]
+    puts  $build_pkg_f "end package body build_pkg;"
+    close $build_pkg_f
+}
