@@ -12,7 +12,7 @@ package build_pkg is
     constant MAJOR_VERSON_C     : integer := 0;
     constant MINOR_VERSON_C     : integer := 0;
     constant BUILD_NUMBER_C     : integer := 16;
-    constant BUILD_TIME_BCD_C   : STD_LOGIC_VECTOR(31 downto 0) := 0x21110314;
+    constant BUILD_TIME_BCD_C   : STD_LOGIC_VECTOR(31 downto 0) := x"21110314";
     constant BUILD_TIME_EPOCH_C : STD_LOGIC_VECTOR(31 downto 0) := 0x6182CEEE;
     constant BRANCH_STRING_C    : string := "refs/heads/main";
     constant COMMIT_OID_C       : STD_LOGIC_VECTOR(159 downto 0) := 0xcb1e49cca5c2b71cc971b56f97cdd6270bd12de0;
