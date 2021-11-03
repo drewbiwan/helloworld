@@ -11,10 +11,10 @@ use ieee.std_logic_1164.all;
 package build_pkg is
     constant MAJOR_VERSON_C     : integer := 0;
     constant MINOR_VERSON_C     : integer := 0;
-    constant BUILD_NUMBER_C     : integer := 18;
+    constant BUILD_NUMBER_C     : integer := 19;
     constant BUILD_TIME_BCD_C   : STD_LOGIC_VECTOR(31 downto 0) := x"21110314";
-    constant BUILD_TIME_EPOCH_C : STD_LOGIC_VECTOR(31 downto 0) := x"6182D0F4";
+    constant BUILD_TIME_EPOCH_C : STD_LOGIC_VECTOR(31 downto 0) := x"6182D135";
     constant BRANCH_STRING_C    : string := "refs/heads/main";
-    constant COMMIT_OID_C       : STD_LOGIC_VECTOR(159 downto 0) := x"69916788c066ab73d21ac3e3073e29983d6ea491";
+    constant COMMIT_OID_C       : STD_LOGIC_VECTOR(159 downto 0) := x"1ca53bee73d1081b476617877931af0fad89c03f";
     constant HARDWARE_STRING_C    : string := "DEV0";
 end build_pkg;
