@@ -76,6 +76,7 @@ proc append_buildlog {build_file buildlog_list} {
     foreach val $buildlog_list {
         puts -nonewline $build_log_f [format "%s " $val]
     }
+    puts  $build_log_f ""
     close $build_log_f
 }
 

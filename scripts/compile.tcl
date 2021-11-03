@@ -21,6 +21,8 @@ source $synth_dir/hardware_settings.tcl
 # Load buildlog functions
 source [pwd]/scripts/buildlog.tcl 
 
+# Check GIT commits
+
 # Pull build information from log
 set old_buildlog_list [get_last_buildlog $build_dir/buildlog.txt]
 
@@ -65,5 +67,9 @@ append_buildlog $build_dir/buildlog.txt $postsynth_buildlog_list
 set tag_string [format "v%s.%s.%s" $major_version $minor_version $new_build_number]
 puts $tag_string
 
-eval "git --help"
-eval "git commit -m \"AUTOCOMMIT. Run from compile.tcl, after synthesis\""
+exec git diff
+exec git add $firmware_dir
+exec git commit -m "AUTOCOMMIT. Run from compile.tcl, after synthesis"
+exec git tag $tag_string
+#exec "git --help"
+#exec "git commit -m \"AUTOCOMMIT. Run from compile.tcl, after synthesis\""
