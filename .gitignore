@@ -6,6 +6,7 @@
 
 *.hw
 *.sim
+*.srcs
 *.cache
 *.ip_user_files
 *.runs
