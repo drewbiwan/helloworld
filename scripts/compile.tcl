@@ -34,22 +34,38 @@ puts "Pre-Synthesis Log information:"
 print_presynth_log $presynth_buildlog_list
 puts "-------------"
 
+puts "-------------"
+puts "Appending Log and creating build_pkg.vhd:"
 append_buildlog $build_dir/buildlog.txt $presynth_buildlog_list
 
+generate_build_pkg $hdl_dir/build_pkg.vhd $presynth_buildlog_list
+puts "-------------"
 
 # Auto commit
 exec git add $firmware_dir
 exec git commit -m "PRE-SYNTHESIS AUTOCOMMIT. Ran from compile.tcl."
 
+puts "-------------"
+puts "Opening Vivado Project in $synth_dir"
 # Open project
 open_project $synth_dir/$project_name.xpr
+puts "-------------"
 
+puts "-------------"
+puts "Synthesis"
+puts "-------------"
 # Compile
 reset_run synth_1
 launch_runs synth_1 -jobs $num_jobs
 wait_on_run synth_1
+puts "-------------"
+puts "Implementation"
+puts "-------------"
 launch_runs impl_1 -jobs $num_jobs
 wait_on_run impl_1
+puts "-------------"
+puts "Creating bitstreams"
+puts "-------------"
 launch_runs impl_1 -to_step write_bitstream  -jobs $num_jobs
 wait_on_run impl_1
 
@@ -61,10 +77,10 @@ set bin_file $synth_dir/$project_name.runs/impl_1/$top_level.bin
 puts "-------------"
 puts "Moving bitstream"
 puts "From $bin_file to $build_dir/$bitstream_string"
-puts "-------------"
+
 
 file copy $bin_file $build_dir/$bitstream_string
-
+puts "-------------"
 
 # Update log
 set tag_string [format "v%s.%s.%s" $major_version $minor_version $new_build_number]
