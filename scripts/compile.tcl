@@ -31,7 +31,7 @@ set old_build_number [lindex $old_buildlog_list 3]
 set new_build_number [expr $old_build_number + 1]
 set presynth_buildlog_list [generate_presynth_buildlog $new_build_number $major_version $minor_version $hardware_string]
 
-puts "New build information:"
+puts "Pre-Synthesis Log information:"
 print_presynth_log $presynth_buildlog_list
 
 append_buildlog $build_dir/buildlog.txt $presynth_buildlog_list
@@ -58,15 +58,14 @@ set bitstream_string [format "%s_%s_%s_%s_%s.bin" $project_name $hardware_name $
 
 
 # Update log
-set log_format "POSTSYNTH: %s %s %s %s %s"
-set postsynth_buildlog_list [format $log_format $major_version $minor_version $new_build_number $hardware_string $bitstream_string]
-
+set tag_string [format "v%s.%s.%s" $major_version $minor_version $new_build_number]
+set log_format "POSTSYNTH: %s %s %s %s %s %s"
+set postsynth_buildlog_list [format $log_format $major_version $minor_version $new_build_number $hardware_string $tag_string $bitstream_string]
 append_buildlog $build_dir/buildlog.txt $postsynth_buildlog_list
+puts "Post-Synthesis Log information:"
+print_postsynth_log $postsynth_buildlog_list
 
 # Commit to git
-set tag_string [format "v%s.%s.%s" $major_version $minor_version $new_build_number]
-puts $tag_string
-
 exec git diff
 exec git add $firmware_dir
 exec git commit -m "AUTOCOMMIT. Run from compile.tcl, after synthesis"

@@ -118,12 +118,21 @@ proc generate_build_pkg {build_pkg_file buildlog_list} {
 }
 
 proc print_presynth_log {buildlog_list} {
-    puts "Hardware String:    [lindex $buildlog_list 8]"
-    puts "Major Version:      [lindex $buildlog_list 1]"
-    puts "Minor Version:      [lindex $buildlog_list 2]"
-    puts "Build Number:       [lindex $buildlog_list 3]"
-    puts "Build Time (bcd):   [lindex $buildlog_list 4]"
-    puts "Build Time (epoch): [lindex $buildlog_list 5]"
-    puts "Branch String:      [lindex $buildlog_list 6]"
-    puts "Commit OID:         [lindex $buildlog_list 7]"
+    puts "  Hardware String:    [lindex $buildlog_list 8]"
+    puts "  Major Version:      [lindex $buildlog_list 1]"
+    puts "  Minor Version:      [lindex $buildlog_list 2]"
+    puts "  Build Number:       [lindex $buildlog_list 3]"
+    puts "  Build Time (bcd):   [lindex $buildlog_list 4]"
+    puts "  Build Time (epoch): [lindex $buildlog_list 5]"
+    puts "  Branch String:      [lindex $buildlog_list 6]"
+    puts "  Commit OID:         [lindex $buildlog_list 7]"
+}
+
+proc print_postsynth_log {buildlog_list} {
+    puts "  Hardware String:    [lindex $buildlog_list 4]"
+    puts "  Major Version:      [lindex $buildlog_list 1]"
+    puts "  Minor Version:      [lindex $buildlog_list 2]"
+    puts "  Build Number:       [lindex $buildlog_list 3]"
+    puts "  Bitstream File:     [lindex $buildlog_list 6]"
+    puts "  git tag:            [lindex $buildlog_list 5]"
 }
