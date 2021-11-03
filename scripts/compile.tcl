@@ -47,4 +47,4 @@ set bitstream_file_format "%s_%s_v%02up%02ub%04"
 set bitstream_string [format "%s_%s_%s_%s_%s.bin" $project_name $hardware_name $major_version $minor_version $current_buildnumber]
 
 # Update log
-append_buildlog_synthcomplete $build_dir/buildlog.txt $bitstream_string
+append_buildlog_postsynth $build_dir/buildlog.txt $bitstream_string

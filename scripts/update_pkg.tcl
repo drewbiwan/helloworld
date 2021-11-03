@@ -82,9 +82,9 @@ puts "-------------"
 puts "Writing to log"
 puts "-------------"
 #"MAJOR, MINOR, BUILD, DATE, EPOCH, BRANCH, OID, SYNTH?"
-set log_format "LOG,%s,%s,%s,%s,%s,%s,%s"
+set log_format "LOG: %s %s %s %s %s %s %s"
 set buildlog_list [format $log_format $major_version $minor_version $new_build_number $time_yymmddhh_hex $build_time_hex $git_branch_string $git_commit_oid_hex]
-append_buildlog $build_dir/buildlog.txt $buildlog_list
+append_buildlog_presynth $build_dir/buildlog.txt $buildlog_list
 
 puts ""
 puts "-------------"
