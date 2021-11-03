@@ -13,7 +13,10 @@ proc get_last_buildlog {build_file} {
     while { [gets $build_log_f data] >= 0 } {
         set line_list [split $data " "]
         # check for valid log data
-        if {[lindex $line_list 0]  == "LOG:"} { 
+        if {[lindex $line_list 0]  == "PRESYNTH:"} { 
+            set buildlog_list $line_list
+            set last_build_number [lindex $buildlog_list 3]
+        } elseif {[lindex $line_list 0]  == "POSTSYNTH:"} {
             set buildlog_list $line_list
             set last_build_number [lindex $buildlog_list 3]
         }
@@ -27,16 +30,49 @@ proc get_last_buildlog {build_file} {
         puts $build_file
         puts "New file will be generated, and builds will start at 1"
         set last_build_number 0
-        puts $build_log_f "MAJOR MINOR BUILD DATE EPOCH BRANCH OID SYNTH?"
+        puts $build_log_f "buildlog.txt"
+        puts $build_log_f "DO NOT EDIT"
+        puts $build_log_f "This is an automatically generated file. See buildlog.tcl for details"
         set buildlog_list {"LOG:" 0 0 0 0 0 0 0 0}
         close $build_log_f
     }
     return $buildlog_list
 }
 
-proc append_buildlog_presynth {build_file buildlog_list} {
+proc generate_presynth_buildlog {new_build_number major_version minor_version hardware_string} {
+    # Get GIT commit oid
+    set git_oid_log [open [pwd]/.git/logs/HEAD r]
+    while { [gets $git_oid_log data] >= 0 } {
+        #run through all lines, only care about last line
+        set last_line $data
+    }
+    close $git_oid_log
+    set git_commit_oid_hex "0x[lindex [split $last_line " "] 1]"
+
+    # Get GIT commit branch
+    set git_branch_log [open [pwd]/.git/HEAD r]
+    while { [gets $git_branch_log data] >= 0 } {
+        #run through all lines, only care about last line
+        set last_line $data
+    }
+    close $git_branch_log
+    set git_branch_string [lindex [split $last_line " "] 1]
+
+    # Get time
+    set build_time [clock seconds]
+    set time_yymmddhh_hex [clock format $build_time -format {0x%y%m%d%H}]
+    set build_time_hex [format 0x%X $build_time]
+
+
+    #"MAJOR, MINOR, BUILD, DATE, EPOCH, BRANCH, OID, SYNTH?"
+    set log_format "PRESYNTH: %s %s %s %s %s %s %s %s"
+    set buildlog_list [format $log_format $major_version $minor_version $new_build_number $time_yymmddhh_hex $build_time_hex $git_branch_string $git_commit_oid_hex $hardware_string]
+
+    return $buildlog_list
+}
+
+proc append_buildlog {build_file buildlog_list} {
     set build_log_f [open $build_file a]
-    puts  $build_log_f "\n"
     foreach val $buildlog_list {
         puts -nonewline $build_log_f [format "%s " $val]
     }
@@ -54,6 +90,9 @@ proc append_buildlog_postsynth {build_file bitstream_string} {
 
 proc generate_build_pkg {build_pkg_file buildlog_list} {
     set build_pkg_f [open $build_pkg_file w+]
+    puts "TEST, BUILD PKG"
+    puts $buildlog_list
+
     puts  $build_pkg_f "----------------"
     puts  $build_pkg_f "-- build_pkg.vhd"
     puts  $build_pkg_f "-- DO NOT EDIT"
@@ -65,14 +104,25 @@ proc generate_build_pkg {build_pkg_file buildlog_list} {
     puts  $build_pkg_f "use ieee.numeric_std.all;"
     puts  $build_pkg_f "use ieee.std_logic_1164.all;"
     puts  $build_pkg_f "package build_pkg is"
-    puts  $build_pkg_f [format "    constant MAJOR_VERSON_C     : integer := %s;" [lindex buildlog_list 1]]
-    puts  $build_pkg_f [format "    constant MINOR_VERSON_C     : integer := %s;" [lindex buildlog_list 2]]
-    puts  $build_pkg_f [format "    constant BUILD_NUMBER_C     : integer := %s;" [lindex buildlog_list 3]]
-    puts  $build_pkg_f [format "    constant BUILD_TIME_BCD_C   : STD_LOGIC_VECTOR(31 downto 0) := %s;" [lindex buildlog_list 4]]
-    puts  $build_pkg_f [format "    constant BUILD_TIME_EPOCH_C : STD_LOGIC_VECTOR(31 downto 0) := %s;" [lindex buildlog_list 5]]
-    puts  $build_pkg_f [format "    constant BRANCH_STRING_C    : string := \"%s\";" [lindex buildlog_list 6]]
-    puts  $build_pkg_f [format "    constant COMMIT_OID_C       : STD_LOGIC_VECTOR(159 downto 0) := %s;" [lindex buildlog_list 7]]
-    puts  $build_pkg_f [format "    constant HARDWARE_STRING_C    : string := \"%s\";" [lindex buildlog_list 8]]
-    puts  $build_pkg_f "end package body build_pkg;"
+    puts  $build_pkg_f [format "    constant MAJOR_VERSON_C     : integer := %s;" [lindex $buildlog_list 1]]
+    puts  $build_pkg_f [format "    constant MINOR_VERSON_C     : integer := %s;" [lindex $buildlog_list 2]]
+    puts  $build_pkg_f [format "    constant BUILD_NUMBER_C     : integer := %s;" [lindex $buildlog_list 3]]
+    puts  $build_pkg_f [format "    constant BUILD_TIME_BCD_C   : STD_LOGIC_VECTOR(31 downto 0) := %s;" [lindex $buildlog_list 4]]
+    puts  $build_pkg_f [format "    constant BUILD_TIME_EPOCH_C : STD_LOGIC_VECTOR(31 downto 0) := %s;" [lindex $buildlog_list 5]]
+    puts  $build_pkg_f [format "    constant BRANCH_STRING_C    : string := \"%s\";" [lindex $buildlog_list 6]]
+    puts  $build_pkg_f [format "    constant COMMIT_OID_C       : STD_LOGIC_VECTOR(159 downto 0) := %s;" [lindex $buildlog_list 7]]
+    puts  $build_pkg_f [format "    constant HARDWARE_STRING_C    : string := \"%s\";" [lindex $buildlog_list 8]]
+    puts  $build_pkg_f "end build_pkg;"
     close $build_pkg_f
+}
+
+proc print_presynth_log {buildlog_list} {
+    puts "Hardware String:    [lindex $buildlog_list 8]"
+    puts "Major Version:      [lindex $buildlog_list 1]"
+    puts "Minor Version:      [lindex $buildlog_list 2]"
+    puts "Build Number:       [lindex $buildlog_list 3]"
+    puts "Build Time (bcd):   [lindex $buildlog_list 4]"
+    puts "Build Time (epoch): [lindex $buildlog_list 5]"
+    puts "Branch String:      [lindex $buildlog_list 6]"
+    puts "Commit OID:         [lindex $buildlog_list 7]"
 }

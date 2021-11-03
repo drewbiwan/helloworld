@@ -22,16 +22,24 @@ source $synth_dir/hardware_settings.tcl
 source [pwd]/scripts/buildlog.tcl 
 
 # Pull build information from log
-set buildlog_list [get_last_buildlog $build_dir/buildlog.txt]
-set major_version [lindex $buildlog_list 1]
-set minor_version [lindex $buildlog_list 2]
-set current_buildnumber [lindex $buildlog_list 3]
+set old_buildlog_list [get_last_buildlog $build_dir/buildlog.txt]
+
+# Update package file, and append log file with new info
+set old_build_number [lindex $old_buildlog_list 3]
+set new_build_number [expr $old_build_number + 1]
+set presynth_buildlog_list [generate_presynth_buildlog $new_build_number $major_version $minor_version $hardware_string]
+
+puts "New build information:"
+print_presynth_log $presynth_buildlog_list
+
+append_buildlog $build_dir/buildlog.txt $presynth_buildlog_list
+
 
 # TEMP UPDATE LOG
 #append_buildlog $build_dir/buildlog.txt $buildlog_list
 
 # Open project
-open_project $synth_dir/$project_name.xpr
+#open_project $synth_dir/$project_name.xpr
 
 # Compile
 #reset_run synth_1
@@ -44,7 +52,18 @@ open_project $synth_dir/$project_name.xpr
 
 # Move bitstream
 set bitstream_file_format "%s_%s_v%02up%02ub%04"
-set bitstream_string [format "%s_%s_%s_%s_%s.bin" $project_name $hardware_name $major_version $minor_version $current_buildnumber]
+set bitstream_string [format "%s_%s_%s_%s_%s.bin" $project_name $hardware_name $major_version $minor_version $new_build_number]
+
 
 # Update log
-append_buildlog_postsynth $build_dir/buildlog.txt $bitstream_string
+set log_format "POSTSYNTH: %s %s %s %s %s"
+set postsynth_buildlog_list [format $log_format $major_version $minor_version $new_build_number $hardware_string $bitstream_string]
+
+append_buildlog $build_dir/buildlog.txt $postsynth_buildlog_list
+
+# Commit to git
+set tag_string [format "v%s.%s.%s" $major_version $minor_version $new_build_number]
+puts $tag_string
+
+eval "git --help"
+eval "git commit -m \"AUTOCOMMIT. Run from compile.tcl, after synthesis\""
