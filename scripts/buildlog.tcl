@@ -132,5 +132,5 @@ proc print_postsynth_log {buildlog_list} {
     puts "  Minor Version:      [lindex $buildlog_list 2]"
     puts "  Build Number:       [lindex $buildlog_list 3]"
     puts "  Bitstream File:     [lindex $buildlog_list 6]"
-    puts "  git tag:            0x[lindex $buildlog_list 5]"
+    puts "  git tag:            [lindex $buildlog_list 5]"
 }
