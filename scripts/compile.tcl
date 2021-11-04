@@ -73,14 +73,15 @@ wait_on_run impl_1
 # Move bitstream
 set bitstream_file_format "%s_%s_v%02up%02ub%04"
 set bitstream_string [format "%s_%s_%s_%s_%s.bin" $project_name $hardware_name $major_version $minor_version $new_build_number]
-set bin_file $synth_dir/$project_name.runs/impl_1/$top_level.bin
+set bitstream_file $synth_dir/$project_name.runs/impl_1/$top_level
 
 puts "-------------"
-puts "Moving bitstream"
-puts "From $bin_file to $build_dir/$bitstream_string"
+puts "Moving bitstreams"
+puts "From $bitstream_file.bin to $build_dir/$bitstream_string.bin"
+puts "From $bitstream_file.bit to $build_dir/$bitstream_string.bit"
 
-
-file copy $bin_file $build_dir/$bitstream_string
+file copy $bitstream_file.bin $build_dir/$bitstream_string.bin
+file copy $bitstream_file.bit $build_dir/$bitstream_string.bit
 puts "-------------"
 
 # Update log

@@ -104,4 +104,4 @@ puts ""
 puts "-------------"
 puts "Setting hardware specific files"
 puts "-------------"
-hardware_tcl
+hardware_create 

@@ -29,7 +29,8 @@ Format of git tag is v{major}.{minor}.{buildnum}
 
 ## How to compile an established project
 1.  Clone git to your local machine
-2.  Run "create" task in 
+2.  Run "create" task in vs code. This should pull hdl and ip (xcix) files from shared and synth/hdl directories.
+3.  Run "compile" task in vs code. 
 
 ## TODO
 1.  git hooks?

@@ -24,9 +24,11 @@ set num_jobs 8
 set synth_dir [pwd]/firmware/synth_$hardware_name
 set contraints_dir $synth_dir/constraints
 set hdl_dir $synth_dir/hdl
-set ip_dir $hdl_dir/ip
+set ip_dir $synth_dir/ip
+set bd_dir $synth_dir/bd
 set build_dir $synth_dir/builds
 
 set firmware_dir [pwd]/firmware
-set shared_hdl_dir $firmware_dir/shared_hdl
-set shared_ip_dir $shared_hdl_dir/shared_ip
+set shared_hdl_dir $firmware_dir/shared_files/shared_hdl
+set shared_ip_dir $firmware_dir/shared_files/shared_ip
+set shared_bd_dir $firmware_dir/shared_files/shared_bd
