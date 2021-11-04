@@ -1,9 +1,10 @@
+#vivado specific files
 *.jou
 *.log
 *.lpr
 *.xpr
 
-
+#vivado synth directories
 *.hw
 *.sim
 *.srcs
