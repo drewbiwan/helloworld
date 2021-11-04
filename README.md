@@ -1,17 +1,17 @@
 # helloworld
 
 ## Directory Structure
-/{project_name}
-    /documentation --for ICDs, block diagrams, datasheets, etc
-    /firmware --for HDL and embedded software
-        /shared_hdl --code that is shared across hardware
-            /shared_ip
-        /synth_{hardware+revision} --top level for vivado project synthesis
-            /builds --this contains the bitstreams and logs for all builds for this hardware
-            /constraints --constraints files read by vivado project
-            /hdl --hardware specific
-    /scripts --tcl and batch scipts for build environments
-    /software --higher level software, excecutables, etc
+{project_name}
+    documentation --for ICDs, block diagrams, datasheets, etc
+    firmware --for HDL and embedded software
+        shared_hdl --code that is shared across hardware
+            shared_ip
+        synth_{hardware+revision} --top level for vivado project synthesis
+            builds --this contains the bitstreams and logs for all builds for this hardware
+            constraints --constraints files read by vivado project
+            hdl --hardware specific
+    scripts --tcl and batch scipts for build environments
+    software --higher level software, excecutables, etc
 
 ## Nomenclature
 ### project name
