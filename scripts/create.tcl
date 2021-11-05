@@ -104,4 +104,17 @@ puts ""
 puts "-------------"
 puts "Setting hardware specific files"
 puts "-------------"
-hardware_create 
+
+puts "Removing unneeded files..."
+foreach f $ignore_list {
+    remove_files $f
+    puts "   $f"
+}
+
+puts "Generating BD from $bd_script..."
+source $bd_script
+
+puts "Generating wrapper and moving it to hdl directory..."
+make_wrapper -files [get_files $synth_dir/$project_name.srcs/sources_1/bd/$bd_name/$bd_name.bd] -top
+file copy -force $synth_dir/$project_name.gen/sources_1/bd/$bd_name/hdl/$bd_name\_wrapper.vhd $hdl_dir/$bd_name\_wrapper.vhd
+read_vhdl $hdl_dir/$bd_name\_wrapper.vhd
