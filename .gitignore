@@ -5,6 +5,7 @@
 *.xpr
 
 #vivado synth directories
+*/bd/*/*
 *.hw
 *.sim
 *.srcs
