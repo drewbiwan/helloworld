@@ -5,7 +5,6 @@
 *.xpr
 
 #vivado synth directories
-**/bd/*/
 *.hw
 *.sim
 *.srcs
@@ -13,3 +12,6 @@
 *.ip_user_files
 *.runs
 *.lock
+
+#block diagram autogen directories
+**/bd/*/

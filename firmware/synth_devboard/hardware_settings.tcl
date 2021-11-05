@@ -22,7 +22,6 @@ proc hardware_create {} {
         remove_files $f
         puts "   $f"
     }
-
 }
 
 proc hardware_update_bd {} {
