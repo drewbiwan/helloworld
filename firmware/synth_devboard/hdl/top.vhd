@@ -13,7 +13,6 @@ use work.build_pkg.all;
 entity top is
     port 
     (
-        clk_p   : in std_logic;
         leds_p  : out std_logic_vector(3 downto 0);
 
         -- ZYNQ PINS
@@ -32,7 +31,6 @@ entity top is
         DDR_ras_n : inout STD_LOGIC;
         DDR_reset_n : inout STD_LOGIC;
         DDR_we_n : inout STD_LOGIC;
-        FCLK_CLK0 : out STD_LOGIC;
         FIXED_IO_ddr_vrn : inout STD_LOGIC;
         FIXED_IO_ddr_vrp : inout STD_LOGIC;
         FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
@@ -52,8 +50,6 @@ architecture bhv of top is
     signal gpi_1_s : STD_LOGIC_VECTOR(31 downto 0);
 
 begin
-
-    clk_s <= clk_p;
     leds_p  <= std_logic_vector(counter_s(3 downto 0));
 
     process(clk_s)
@@ -82,7 +78,7 @@ begin
         DDR_ras_n           => DDR_ras_n,
         DDR_reset_n         => DDR_reset_n,
         DDR_we_n            => DDR_we_n,
-        FCLK_CLK0           => FCLK_CLK0,
+        FCLK_CLK0           => clk_s,
         FIXED_IO_ddr_vrn    => FIXED_IO_ddr_vrn,
         FIXED_IO_ddr_vrp    => FIXED_IO_ddr_vrp,
         FIXED_IO_mio        => FIXED_IO_mio,
