@@ -29,28 +29,37 @@ set old_build_number [lindex $old_buildlog_list 3]
 set new_build_number [expr $old_build_number + 1]
 set presynth_buildlog_list [generate_presynth_buildlog $new_build_number $major_version $minor_version $hardware_string]
 
+# Append log with "PRESYNTH:" message
 puts "-------------"
 puts "Pre-Synthesis Log information:"
 print_presynth_log $presynth_buildlog_list
 puts "-------------"
 
+# Update build log and build pkg files
 puts "-------------"
 puts "Appending Log and creating build_pkg.vhd:"
 append_buildlog $build_dir/buildlog.txt $presynth_buildlog_list
-
 generate_build_pkg $hdl_dir/build_pkg.vhd $presynth_buildlog_list
 read_vhdl $hdl_dir/build_pkg.vhd
+puts "-------------"
+
+# Open vivado project
+puts "-------------"
+puts "Opening Vivado Project in $synth_dir"
+open_project $synth_dir/$project_name.xpr
+puts "-------------"
+
+# Save current BD as a tcl script
+puts "-------------"
+puts "Updating block diagram tcl script at $bd_script"
+puts "BD at $synth_dir/$project_name.srcs/sources_1/bd/$bd_name/$bd_name.bd"
+open_bd_design $synth_dir/$project_name.srcs/sources_1/bd/$bd_name/$bd_name.bd
+write_bd_tcl -force $bd_script
 puts "-------------"
 
 # Auto commit
 exec git add $firmware_dir
 exec git commit -m "PRE-SYNTHESIS AUTOCOMMIT. Ran from compile.tcl."
-
-puts "-------------"
-puts "Opening Vivado Project in $synth_dir"
-# Open project
-open_project $synth_dir/$project_name.xpr
-puts "-------------"
 
 puts "-------------"
 puts "Synthesis"
@@ -72,7 +81,7 @@ wait_on_run impl_1
 
 # Move bitstream
 set bitstream_file_format "%s_%s_v%02up%02ub%04"
-set bitstream_string [format "%s_%s_%s_%s_%s.bin" $project_name $hardware_name $major_version $minor_version $new_build_number]
+set bitstream_string [format "%s_%s_%s_%s_%s" $project_name $hardware_name $major_version $minor_version $new_build_number]
 set bitstream_file $synth_dir/$project_name.runs/impl_1/$top_level
 
 puts "-------------"

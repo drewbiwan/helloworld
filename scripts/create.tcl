@@ -24,11 +24,14 @@ puts -nonewline "Hardware: "
 puts $hardware_name
 puts -nonewline "FPGA: "
 puts $fpga_device
+puts -nonewline "Board: "
+puts $fpga_board
 puts -nonewline "Top Level Entity: "
 puts $top_level
 puts "-------------"
 
 create_project $project_name $synth_dir -part $fpga_device -force
+set_property board_part $fpga_board [current_project]
 
 # Read HDL and IP
 puts ""
@@ -114,7 +117,12 @@ foreach f $ignore_list {
 puts "Generating BD from $bd_script..."
 source $bd_script
 
+set bd_autogen_file $synth_dir/$project_name.srcs/sources_1/bd/$bd_name/$bd_name.bd
+
+puts "Generating BD target..."
+generate_target all [get_files $bd_autogen_file]
+
 puts "Generating wrapper and moving it to hdl directory..."
-make_wrapper -files [get_files $synth_dir/$project_name.srcs/sources_1/bd/$bd_name/$bd_name.bd] -top
+make_wrapper -files [get_files $bd_autogen_file] -top
 file copy -force $synth_dir/$project_name.gen/sources_1/bd/$bd_name/hdl/$bd_name\_wrapper.vhd $hdl_dir/$bd_name\_wrapper.vhd
 read_vhdl $hdl_dir/$bd_name\_wrapper.vhd
