@@ -1,23 +1,24 @@
 # helloworld
 
 ## Directory Structure
--{project_name}
---documentation --for ICDs, block diagrams, datasheets, etc
---firmware --for HDL and embedded software
----shared_hdl --code that is shared across hardware
-----shared_ip
----synth_{hardware+revision} --top level for vivado project synthesis
-----builds --this contains the bitstreams and logs for all builds for this hardware
-----constraints --constraints files read by vivado project
-----hdl --hardware specific
---scripts --tcl and batch scipts for build environments
---software --higher level software, excecutables, etc
+- {project_name}
+    - documentation --for ICDs, block diagrams, datasheets, etc
+    - firmware --for HDL and embedded software
+        - shared_hdl -- HDL files shared across hardware (.hdl)
+        - shared_ip --IP files (.xcix)
+        - synth_{configuration} --top level for vivado project synthesis
+            - builds --this contains the bitstreams and logs for all builds for this hardware (.bin, .bit, .xsa)
+            - constraints --constraints files read by vivado project (.xdc)
+            - hdl --configuration specific (.vhd)
+            - ip --configuration specific IP files (.xcix)
+    - scripts --tcl and batch scipts for build environments
+    - software --higher level software, excecutables, etc
 
 ## Nomenclature
 ### project name
 This is the overarching name for the entire codebase. It defines the top level dire
-### hardware name
-Specific hardware that necessitates different top level code, constraints, parameters, etc
+### configuration name
+Specific configuration that necessitates different top level code, constraints, parameters, etc. This might be differing hardware/dev board, or a design split
 ### version and build
 Major and minor versions are manually changed. Minor should be regular releases, major should be significant changes in the codebase, or a focus shift to new hardware
 
