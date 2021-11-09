@@ -1,0 +1,4 @@
+buildlog.txt
+DO NOT EDIT
+This is an automatically generated file. See buildlog.tcl for details
+PRESYNTH: 0 0 1 21110914 618ACDC7 refs/heads/main e0b3315a829dc0f07c176a337cb82d37fc7f69df TEMP 
