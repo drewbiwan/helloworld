@@ -28,12 +28,12 @@ source $synth_dir/configuration_settings.tcl
 source [pwd]/scripts/buildlog.tcl 
 
 # Pull build information from log
-set old_buildlog_list [get_last_buildlog $build_dir/buildlog.txt]
+set old_buildlog_list [get_last_buildlog $buildlog_dir/buildlog.txt]
 
 # Update package file, and append log file with new info
 set old_build_number [lindex $old_buildlog_list 3]
 set new_build_number [expr $old_build_number + 1]
-set presynth_buildlog_list [generate_presynth_buildlog $new_build_number $major_version $minor_version $configuration_string]
+set presynth_buildlog_list [generate_presynth_buildlog $configuration_name $new_build_number $major_version $minor_version $configuration_string]
 
 # Append log with "PRESYNTH:" message
 puts "-------------"
@@ -44,7 +44,7 @@ puts "-------------"
 # Update build log and build pkg files
 puts "-------------"
 puts "Appending Log and creating build_pkg.vhd:"
-append_buildlog $build_dir/buildlog.txt $presynth_buildlog_list
+append_buildlog $buildlog_dir/buildlog.txt $presynth_buildlog_list
 generate_build_pkg $hdl_dir/build_pkg.vhd $presynth_buildlog_list
 puts "-------------"
 
@@ -98,19 +98,19 @@ puts "Creating and renaming Bitstreams..."
 set bitstream_file_format "%s_%s_v%02up%02ub%04"
 set bitstream_string [format "%s_%s_%s_%s_%s" $project_name $configuration_name $major_version $minor_version $new_build_number]
 set bitstream_file $synth_dir/$project_name.runs/impl_1/$top_level
-puts "From $bitstream_file.bin to $build_dir/$bitstream_string.bin"
-puts "From $bitstream_file.bit to $build_dir/$bitstream_string.bit"
-puts "Exporting hardware to $build_dir/$bitstream_string.xsa"
-file copy $bitstream_file.bin $build_dir/$bitstream_string.bin
-file copy $bitstream_file.bit $build_dir/$bitstream_string.bit
-write_hw_platform -fixed -include_bit -force -file $build_dir/$bitstream_string.xsa
+puts "From $bitstream_file.bin to $bitstream_dir/$bitstream_string.bin"
+puts "From $bitstream_file.bit to $bitstream_dir/$bitstream_string.bit"
+puts "Exporting hardware to $bitstream_dir/$bitstream_string.xsa"
+file copy $bitstream_file.bin $bitstream_dir/$bitstream_string.bin
+file copy $bitstream_file.bit $bitstream_dir/$bitstream_string.bit
+write_hw_platform -fixed -include_bit -force -file $bitstream_dir/$bitstream_string.xsa
 puts "-------------"
 
 # Update log
 set tag_string [format "%sv%s.%s.%s" $configuration_name $major_version $minor_version $new_build_number]
 set log_format "POSTSYNTH: %s %s %s %s %s %s %s"
 set postsynth_buildlog_list [format $log_format $configuration_name $major_version $minor_version $new_build_number $configuration_string $tag_string $bitstream_string]
-append_buildlog $build_dir/buildlog.txt $postsynth_buildlog_list
+append_buildlog $buildlog_dir/buildlog.txt $postsynth_buildlog_list
 
 puts "-------------"
 puts "Post-Synthesis Log information:"

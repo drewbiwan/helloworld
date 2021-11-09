@@ -4,7 +4,7 @@ REM Should be run from project root directory
 echo Creating new configuration directory at %1
 mkdir .\firmware\synth_%1
 mkdir .\firmware\synth_%1\bd
-mkdir .\firmware\synth_%1\builds
+mkdir .\firmware\synth_%1\bitstreams
 mkdir .\firmware\synth_%1\constraints
 mkdir .\firmware\synth_%1\hdl
 mkdir .\firmware\synth_%1\ip

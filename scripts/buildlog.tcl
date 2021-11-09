@@ -7,6 +7,7 @@
 # attempts to read last valid line of buildlog.txt
 # if there are no valid lines or no file, it will generate a new file with header and return 0
 proc get_last_buildlog {build_file} {
+    set buildlog_list {"LOG:" 0 0 0 0 0 0 0 0}
     if {[file exists $build_file] == 1} {
         set build_log_f [open $build_file r]
         set last_build_number 0
@@ -20,7 +21,7 @@ proc get_last_buildlog {build_file} {
             } elseif {[lindex $line_list 0]  == "POSTSYNTH:"} {
                 set buildlog_list $line_list
                 set last_build_number [lindex $buildlog_list 3]
-            }
+            } 
         }
         close $build_log_f
     } else {

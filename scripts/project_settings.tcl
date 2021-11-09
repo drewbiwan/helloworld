@@ -20,7 +20,8 @@ set contraints_dir $synth_dir/constraints
 set hdl_dir $synth_dir/hdl
 set ip_dir $synth_dir/ip
 set bd_dir $synth_dir/bd
-set build_dir [pwd]/firmware/builds
+set bitstream_dir $synth_dir/bitstreams
+set buildlog_dir [pwd]/firmware/buildlog
 
 set firmware_dir [pwd]/firmware
 set shared_hdl_dir $firmware_dir/shared_files/shared_hdl
