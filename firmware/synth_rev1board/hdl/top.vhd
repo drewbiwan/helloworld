@@ -57,7 +57,7 @@ begin
         if rising_edge(clk_s) then
             counter_s <= counter_s + 1;
         end if;
-    end process
+    end process;
 
 
     zynq_inst : entity work.zynq_bd_wrapper
