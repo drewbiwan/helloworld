@@ -9,8 +9,8 @@
 # Load Project specific settings
 source [pwd]/scripts/project_settings.tcl
 
-# Load hardware specific settings
-source $synth_dir/hardware_settings.tcl
+# Load configuration specific settings
+source $synth_dir/configuration_settings.tcl
 
 # Load buildlog functions
 source [pwd]/scripts/buildlog.tcl 
@@ -18,7 +18,7 @@ source [pwd]/scripts/buildlog.tcl
 puts ""
 puts "--------------------------"
 puts -nonewline "Updating packages for "
-puts $hardware_name
+puts $configuration_name
 puts "--------------------------"
 
 puts ""
@@ -82,7 +82,7 @@ puts "Writing to log"
 puts "-------------"
 #"MAJOR, MINOR, BUILD, DATE, EPOCH, BRANCH, OID, SYNTH?"
 set log_format "PRESYNTH: %s %s %s %s %s %s %s %s"
-set buildlog_list [format $log_format $major_version $minor_version $new_build_number $time_yymmddhh_hex $build_time_hex $git_branch_string $git_commit_oid_hex $hardware_name]
+set buildlog_list [format $log_format $major_version $minor_version $new_build_number $time_yymmddhh_hex $build_time_hex $git_branch_string $git_commit_oid_hex $configuration_name]
 append_buildlog $build_dir/buildlog.txt $buildlog_list
 
 puts ""

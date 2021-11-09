@@ -21,7 +21,7 @@ puts "-------------"
 # Load project specific settings
 source [pwd]/scripts/project_settings.tcl 
 
-# Load hardware/build specific settings
+# Load configuration/build specific settings
 source $synth_dir/configuration_settings.tcl
 
 # Load buildlog functions
@@ -33,7 +33,7 @@ set old_buildlog_list [get_last_buildlog $build_dir/buildlog.txt]
 # Update package file, and append log file with new info
 set old_build_number [lindex $old_buildlog_list 3]
 set new_build_number [expr $old_build_number + 1]
-set presynth_buildlog_list [generate_presynth_buildlog $new_build_number $major_version $minor_version $hardware_string]
+set presynth_buildlog_list [generate_presynth_buildlog $new_build_number $major_version $minor_version $configuration_string]
 
 # Append log with "PRESYNTH:" message
 puts "-------------"
@@ -89,7 +89,7 @@ wait_on_run impl_1
 puts "-------------"
 puts "Creating and renaming Bitstreams..."
 set bitstream_file_format "%s_%s_v%02up%02ub%04"
-set bitstream_string [format "%s_%s_%s_%s_%s" $project_name $hardware_name $major_version $minor_version $new_build_number]
+set bitstream_string [format "%s_%s_%s_%s_%s" $project_name $configuration_name $major_version $minor_version $new_build_number]
 set bitstream_file $synth_dir/$project_name.runs/impl_1/$top_level
 puts "From $bitstream_file.bin to $build_dir/$bitstream_string.bin"
 puts "From $bitstream_file.bit to $build_dir/$bitstream_string.bit"
@@ -102,7 +102,7 @@ puts "-------------"
 # Update log
 set tag_string [format "v%s.%s.%s" $major_version $minor_version $new_build_number]
 set log_format "POSTSYNTH: %s %s %s %s %s %s"
-set postsynth_buildlog_list [format $log_format $major_version $minor_version $new_build_number $hardware_string $tag_string $bitstream_string]
+set postsynth_buildlog_list [format $log_format $major_version $minor_version $new_build_number $configuration_string $tag_string $bitstream_string]
 append_buildlog $build_dir/buildlog.txt $postsynth_buildlog_list
 
 puts "-------------"

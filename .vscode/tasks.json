@@ -5,15 +5,15 @@
     "command": "hw",
     "tasks": [
         {
-            "label": "create",
+            "label": "create_vivado",
             "type": "shell",
-            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create.tcl devboard",
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create_vivado.tcl devboard",
             "problemMatcher": []
         },
         {
-            "label": "compile",
+            "label": "compile_vivado",
             "type": "shell",
-            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile.tcl devboard",
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile_vivado.tcl devboard",
             "problemMatcher": [
                 "$eslint-stylish"
             ]
