@@ -28,22 +28,66 @@
             "label": "compile_vivado",
             "type": "shell",
             "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile_vivado.tcl ${input:configuration}",
-            "problemMatcher": [
-                "$eslint-stylish"
-            ]
+            "problemMatcher": {
+                "owner": "dcoker",
+                "fileLocation":"absolute",
+                "source": "dcoker",
+                "background": {"activeOnStart": true},
+                "pattern": [
+                    {
+                        "regexp": "^(CRITICAL WARNING|WARNING):\\s+\\[(\\S+\\s\\S+)\\]\\s(.+)\\[(.*)\\:(\\d+)\\]$",
+                        "severity": 1,
+                        "code": 2,
+                        "message": 3,
+                        "file": 4,
+                        "line": 5
+                    },
+                    {
+                        "regexp": "^(ERROR):(.*)$",
+                        "severity": 1,
+                        "message": 2
+                    }
+        
+                ]
+            }
         },
         {
             "label": "clean vivado",
             "type": "shell",
             "command": "${cwd}//scripts//clean.bat ${input:configuration}",
-            "problemMatcher": []
+            "problemMatcher":[]
         },
         {
             "label": "new_configuration",
             "type": "shell",
             "command": "${cwd}//scripts//new_configuration.bat ${input:new_configuration}",
             "problemMatcher": []
-        }
+        },
+        {
+            "label": "check_problem",
+            "command": "echo WARNING: [Vivado 12-584] No ports matched 'leds_p[3]'. [F:/gitworkspace/helloworld/firmware/synth_rev1board/constraints/devboard_pins.xdc:1]",
+            "problemMatcher": {
+                "owner": "dcoker",
+                "fileLocation":"absolute",
+                "source": "dcoker",
+                "pattern": [
+                    {
+                        "regexp": "^(CRITICAL WARNING|WARNING):\\s+\\[(\\S+\\s\\S+)\\]\\s(.+)\\[(.*)\\:(\\d+)\\]$",
+                        "severity": 1,
+                        "code": 2,
+                        "message": 3,
+                        "file": 4,
+                        "line": 5
+                    },
+                    {
+                        "regexp": "^(ERROR):(.*)$",
+                        "severity": 1,
+                        "message": 2
+                    }
+        
+                ]
+            }
+        },
     ],
     "inputs": [
         {
@@ -62,5 +106,5 @@
             "description": "Name the new configuration",
             "default": "default_config"
           }
-    ]
+    ],
 }
