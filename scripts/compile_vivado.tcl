@@ -62,6 +62,12 @@ puts "Reading $hdl_dir/build_pkg.vhd"
 update_compile_order -fileset sources_1
 puts "-------------"
 
+# Check syntax
+puts "-------------"
+puts "Checking Syntax"
+check_syntax
+puts "-------------"
+
 # Save current BD as a tcl script
 puts "-------------"
 puts "Updating block diagram tcl script at $bd_script"
