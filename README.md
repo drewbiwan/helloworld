@@ -8,6 +8,7 @@
         - shared_ip --IP files (.xcix)
         - synth_{configuration} --top level for vivado project synthesis
             - builds --this contains the bitstreams and logs for all builds for this hardware (.bin, .bit, .xsa)
+            - bd --tcl scripts to build block diagrams (.tcl)
             - constraints --constraints files read by vivado project (.xdc)
             - hdl --configuration specific (.vhd)
             - ip --configuration specific IP files (.xcix)
@@ -20,23 +21,27 @@ This is the overarching name for the entire codebase. It defines the top level d
 ### configuration name
 Specific configuration that necessitates different top level code, constraints, parameters, etc. This might be differing hardware/dev board, or a design split
 ### version and build
-Major and minor versions are manually changed. Minor should be regular releases, major should be significant changes in the codebase, or a focus shift to new hardware
-
-The build number is auto-incremented on each run of the compile script. 
+Major and minor versions are manually changed. Minor should be regular releases, major should be significant changes in the codebase, or a focus shift to new hardware. The build number is auto-incremented on each run of the compile script, whether or not it results in a bitstream.
 
 Format of git tag is v{major}.{minor}.{buildnum}
 
-## New project process
+## Processes
 
-## How to compile an established project
-1.  Clone git to your local machine
-2.  Run "create" task in vs code. This should pull hdl and ip (xcix) files from shared and synth/hdl directories.
-3.  Run "compile" task in vs code. 
+### New PC, established project + git repo
+1. Clone git to your local machine
+    - (optional) create new branch. Compile script will auto-commit, which can make things complicated if multiple people are building on the same branch.
+2. Run "create_vivado {configuration name}" task in vs code. This should pull hdl and ip (xcix) files from shared and synth/hdl directories. This will generate vivado project files and import all files.
+3. Run "compile_vivado {configuration name}" task in vs code. This will kick off a build locally. It will automatically append the build log, update the build package, and commit any changes. Once the bitstreams are generated, it will amend the commit and tag with version+build.
+
+### New configuration within a project
+1. Run new_configuration.bat NEWCONFIGNAME. This generates directory firmware/synth_NEWCONFIGNAME with sub-directories and placeholder files. 
+2. Copy/edit/create new hdl, ip, constraints, tcl
+3. Edit tasks.json to run this configuration, rather than the old
 
 ## TODO
-1.  git hooks?
-2.  sdk tcl script
-3.  document
-4.  bit and bin?
-5.  create dir structure script
-6.  embedded c dir structure
+- git hooks?
+- sdk tcl script
+- document
+- create dir structure script
+- embedded c dir structure
+- problem catcher
