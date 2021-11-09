@@ -33,9 +33,16 @@
             ]
         },
         {
+            "label": "clean vivado",
+            "type": "shell",
+            "command": "${cwd}//scripts//clean.bat ${input:configuration}",
+            "problemMatcher": []
+        },
+        {
             "label": "new_configuration",
             "type": "shell",
-            "command": "${cwd}//scripts//new_configuration.bat ${input:new_configuration}"
+            "command": "${cwd}//scripts//new_configuration.bat ${input:new_configuration}",
+            "problemMatcher": []
         }
     ],
     "inputs": [
@@ -45,7 +52,7 @@
             "description": "Which configuration to run?",
             "options": [
               "devboard",
-              "newconf",
+              "rev1board"
             ],
             "default": "devboard"
           },

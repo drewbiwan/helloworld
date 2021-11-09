@@ -1,4 +1,4 @@
-REM @echo off 
+@echo off 
 REM Expects 1 argument: the new configuration name (eg "new_configuration.bat devboard", which creates /synth_devboard)
 REM Should be run from project root directory
 echo Creating new configuration directory at %1
