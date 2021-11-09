@@ -32,23 +32,15 @@
                 "owner": "dcoker",
                 "fileLocation":"absolute",
                 "source": "dcoker",
-                "background": {"activeOnStart": true},
-                "pattern": [
-                    {
-                        "regexp": "^(CRITICAL WARNING|WARNING):\\s+\\[(\\S+\\s\\S+)\\]\\s(.+)\\[(.*)\\:(\\d+)\\]$",
-                        "severity": 1,
-                        "code": 2,
-                        "message": 3,
-                        "file": 4,
-                        "line": 5
-                    },
-                    {
-                        "regexp": "^(ERROR):(.*)$",
-                        "severity": 1,
-                        "message": 2
-                    }
-        
-                ]
+                "pattern": {
+                    "regexp": "^(ERROR|CRITICAL WARNING|WARNING):\\s+\\[(\\S+\\s\\S+)\\]\\s(.+)\\[(.*)\\:(\\d+)\\]$",
+                    "severity": 1,
+                    "code": 2,
+                    "message": 3,
+                    "file": 4,
+                    "line": 5
+                },
+
             }
         },
         {
@@ -65,27 +57,21 @@
         },
         {
             "label": "check_problem",
+            "type": "shell",
             "command": "echo WARNING: [Vivado 12-584] No ports matched 'leds_p[3]'. [F:/gitworkspace/helloworld/firmware/synth_rev1board/constraints/devboard_pins.xdc:1]",
             "problemMatcher": {
                 "owner": "dcoker",
                 "fileLocation":"absolute",
                 "source": "dcoker",
-                "pattern": [
-                    {
-                        "regexp": "^(CRITICAL WARNING|WARNING):\\s+\\[(\\S+\\s\\S+)\\]\\s(.+)\\[(.*)\\:(\\d+)\\]$",
-                        "severity": 1,
-                        "code": 2,
-                        "message": 3,
-                        "file": 4,
-                        "line": 5
-                    },
-                    {
-                        "regexp": "^(ERROR):(.*)$",
-                        "severity": 1,
-                        "message": 2
-                    }
-        
-                ]
+                "pattern": {
+                    "regexp": "^(ERROR|CRITICAL WARNING|WARNING):\\s+\\[(\\S+\\s\\S+)\\]\\s(.+)\\[(.*)\\:(\\d+)\\]$",
+                    "severity": 1,
+                    "code": 2,
+                    "message": 3,
+                    "file": 4,
+                    "line": 5
+                },
+
             }
         },
     ],
