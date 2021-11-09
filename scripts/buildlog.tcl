@@ -17,10 +17,10 @@ proc get_last_buildlog {build_file} {
             # check for valid log data
             if {[lindex $line_list 0]  == "PRESYNTH:"} { 
                 set buildlog_list $line_list
-                set last_build_number [lindex $buildlog_list 3]
+                set last_build_number [lindex $buildlog_list 4]
             } elseif {[lindex $line_list 0]  == "POSTSYNTH:"} {
                 set buildlog_list $line_list
-                set last_build_number [lindex $buildlog_list 3]
+                set last_build_number [lindex $buildlog_list 4]
             } 
         }
         close $build_log_f
