@@ -17,6 +17,11 @@
             "problemMatcher": [
                 "$eslint-stylish"
             ]
+        },
+        {
+            "label": "new_configuration",
+            "type": "shell",
+            "command": "${cwd}//scripts//new_configuration.bat newconf"
         }
     ]
 }
