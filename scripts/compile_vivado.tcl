@@ -46,13 +46,20 @@ puts "-------------"
 puts "Appending Log and creating build_pkg.vhd:"
 append_buildlog $build_dir/buildlog.txt $presynth_buildlog_list
 generate_build_pkg $hdl_dir/build_pkg.vhd $presynth_buildlog_list
-read_vhdl $hdl_dir/build_pkg.vhd
 puts "-------------"
 
 # Open vivado project
 puts "-------------"
 puts "Opening Vivado Project in $synth_dir"
 open_project $synth_dir/$project_name.xpr
+puts "-------------"
+
+# Updating files
+puts "-------------"
+puts "Updating files and compile order"
+read_vhdl $hdl_dir/build_pkg.vhd
+puts "Reading $hdl_dir/build_pkg.vhd"
+update_compile_order -fileset sources_1
 puts "-------------"
 
 # Save current BD as a tcl script
@@ -64,7 +71,7 @@ write_bd_tcl -force $bd_script
 puts "-------------"
 
 # Auto commit
-exec git add $firmware_dir
+exec git add $firmware_dir --renormalize
 exec git commit -m "PRE-SYNTHESIS AUTOCOMMIT. Ran from compile.tcl."
 
 puts "-------------"
@@ -112,8 +119,13 @@ puts "-------------"
 
 # Commit to git
 # exec git diff
-exec git add $firmware_dir
+exec git add $firmware_dir 
 exec git commit --amend -m "POST-SYNTHESIS AUTOCOMMIT. Ran from compile.tcl."
 exec git tag $tag_string
 #exec "git --help"
 #exec "git commit -m \"AUTOCOMMIT. Run from compile.tcl, after synthesis\""
+
+
+puts "-------------"
+puts "END OF COMPILE SCRIPT"
+puts "-------------"

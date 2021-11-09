@@ -30,13 +30,14 @@ Format of git tag is v{major}.{minor}.{buildnum}
 ### New PC, established project + git repo
 1. Clone git to your local machine
     - (optional) create new branch. Compile script will auto-commit, which can make things complicated if multiple people are building on the same branch.
-2. Run "create_vivado {configuration name}" task in vs code. This should pull hdl and ip (xcix) files from shared and synth/hdl directories. This will generate vivado project files and import all files.
-3. Run "compile_vivado {configuration name}" task in vs code. This will kick off a build locally. It will automatically append the build log, update the build package, and commit any changes. Once the bitstreams are generated, it will amend the commit and tag with version+build.
+2. Run "create_vivado" task in vs code, then select the configuration you want. This should pull hdl and ip (xcix) files from shared and synth/hdl directories. This will generate vivado project files and import all files.
+3. Run "compile_vivado" task in vs code, then select the configuration you want. This will kick off a build locally. It will automatically append the build log, update the build package, and commit any changes. Once the bitstreams are generated, it will amend the commit and tag with version+build.
 
 ### New configuration within a project
-1. Run new_configuration.bat NEWCONFIGNAME. This generates directory firmware/synth_NEWCONFIGNAME with sub-directories and placeholder files. 
+1. Run the "new configuration" task in vs code, then enter the name of the new configuration. This generates directory firmware/synth_NEWCONFIGNAME with sub-directories and placeholder files. 
 2. Copy/edit/create new hdl, ip, constraints, tcl
-3. Edit tasks.json to run this configuration, rather than the old
+3. Update the tasks.json input:configuration list to include this configuration
+4. Run create_vivado and compile_vivado scripts to generate bitstreams
 
 ## TODO
 - git hooks?
