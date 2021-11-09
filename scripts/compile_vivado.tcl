@@ -127,7 +127,7 @@ puts "-------------"
 # Commit to git
 # exec git diff
 exec git add $contraints_dir -u
-exec git add $hdl_dir -u
+exec git add $hdl_dir -u --renormalize
 exec git add $ip_dir -u
 exec git add $bd_dir -u
 exec git add $buildlog_dir -u
