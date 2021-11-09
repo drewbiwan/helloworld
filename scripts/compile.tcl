@@ -6,17 +6,23 @@
 #   Vivado project should have already been created by create.tcl
 #   all files should be committed, and update_pkg.tcl should have been run
 
+if { $argc != 1 } {
+    puts "ERROR: (compile.tcl). Please specify a configuration to run, eg \"create.tcl devboard\""
+} else {
+    set configuration_name [lindex $argv 0]
+}
+
 puts ""
 puts "-------------"
-puts -nonewline "Running Compile Script for project in "
-puts [pwd]
+puts "Running Compile Script for project in [pwd]"
+puts "Configuration selected: $configuration_name"
 puts "-------------"
 
 # Load project specific settings
 source [pwd]/scripts/project_settings.tcl 
 
 # Load hardware/build specific settings
-source $synth_dir/hardware_settings.tcl
+source $synth_dir/configuration_settings.tcl
 
 # Load buildlog functions
 source [pwd]/scripts/buildlog.tcl 

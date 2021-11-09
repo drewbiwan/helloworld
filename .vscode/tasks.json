@@ -7,13 +7,13 @@
         {
             "label": "create",
             "type": "shell",
-            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create.tcl synth_devboard",
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create.tcl devboard",
             "problemMatcher": []
         },
         {
             "label": "compile",
             "type": "shell",
-            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile.tcl synth_devboard",
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile.tcl devboard",
             "problemMatcher": [
                 "$eslint-stylish"
             ]

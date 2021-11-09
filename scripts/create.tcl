@@ -2,26 +2,33 @@
 # Drew Coker 
 # 11/2/2021
 # This should be run after pulling from repo, or as a clean slate (after running clean.sh in synth directory)
+# The first argument should be the configuration name, eg "source create.tcl devboard" to create vivado project in /synth_devboard
+
+if { $argc != 1 } {
+    puts "ERROR: (create.tcl). Please specify a configuration to run, eg \"create.tcl devboard\""
+} else {
+    set configuration_name [lindex $argv 0]
+}
 
 puts ""
 puts "-------------"
-puts -nonewline "Running Create Script for project in "
-puts [pwd]
+puts "Running Create Script for project in [pwd]"
+puts "Configuration selected: $configuration_name"
 puts "-------------"
 
 # Load project specific settings
-source [pwd]/scripts/project_settings.tcl 
+source [pwd]/scripts/project_settings.tcl
 
-# Load hardware/build specific settings
-source $synth_dir/hardware_settings.tcl
+# Load configuration/build specific settings
+source $synth_dir/configuration_settings.tcl
 
 # Create Vivado Project
 puts ""
 puts "-------------"
 puts -nonewline "Creating Vivado Project "
 puts $project_name
-puts -nonewline "Hardware: "
-puts $hardware_name
+puts -nonewline "Configuration: "
+puts $configuration_name
 puts -nonewline "FPGA: "
 puts $fpga_device
 puts -nonewline "Board: "
@@ -36,7 +43,7 @@ set_property board_part $fpga_board [current_project]
 # Read HDL and IP
 puts ""
 puts "-------------"
-puts -nonewline "Reading hardware specific HDL in "
+puts -nonewline "Reading configuration specific HDL in "
 puts $hdl_dir
 puts "-------------"
 
@@ -48,7 +55,7 @@ foreach f [glob -nocomplain $hdl_dir/*.vhd] {
 
 puts ""
 puts "-------------"
-puts -nonewline "Reading hardware specific IP in "
+puts -nonewline "Reading configuration specific IP in "
 puts $ip_dir
 puts "-------------"
 

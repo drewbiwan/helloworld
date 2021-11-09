@@ -2,13 +2,13 @@
 # VIVADO
 ######################
 
-#vivado specific files
+# vivado specific files
 *.jou
 *.log
 *.lpr
 *.xpr
 
-#vivado synth directories
+# vivado synth directories
 *.hw
 *.sim
 *.srcs
@@ -17,8 +17,11 @@
 *.runs
 *.lock
 
-#block diagram autogen directories
+# block diagram autogen directories
 **/bd/*/
+
+# Vivado bd tcl likes to generate stupid directories everywhere
+*NONE/*
 
 ######################
 # VITIS
