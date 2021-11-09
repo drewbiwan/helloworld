@@ -1,3 +1,7 @@
+######################
+# VIVADO
+######################
+
 #vivado specific files
 *.jou
 *.log
@@ -15,3 +19,10 @@
 
 #block diagram autogen directories
 **/bd/*/
+
+######################
+# VITIS
+######################
+
+# ignore everything for now
+/software/*
