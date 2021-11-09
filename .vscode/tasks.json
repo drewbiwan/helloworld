@@ -3,17 +3,31 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "command": "hw",
+    "options": {
+        "env": {
+            "vivado_exe" : "C://Xilinx//Vivado//2021.2//bin//vivado",
+            "active_configuration" : "devboard"
+        }
+    },
     "tasks": [
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "echo",
+            "args": [
+                "${input:configuration}"
+            ]
+        },
         {
             "label": "create_vivado",
             "type": "shell",
-            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create_vivado.tcl devboard",
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create_vivado.tcl ${input:configuration}",
             "problemMatcher": []
         },
         {
             "label": "compile_vivado",
             "type": "shell",
-            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile_vivado.tcl devboard",
+            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile_vivado.tcl ${input:configuration}",
             "problemMatcher": [
                 "$eslint-stylish"
             ]
@@ -21,7 +35,25 @@
         {
             "label": "new_configuration",
             "type": "shell",
-            "command": "${cwd}//scripts//new_configuration.bat newconf"
+            "command": "${cwd}//scripts//new_configuration.bat ${input:new_configuration}"
         }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "configuration",
+            "description": "Which configuration to run?",
+            "options": [
+              "devboard",
+              "newconf",
+            ],
+            "default": "devboard"
+          },
+          {
+            "type": "promptString",
+            "id": "new_configuration",
+            "description": "Name the new configuration",
+            "default": "default_config"
+          }
     ]
 }
