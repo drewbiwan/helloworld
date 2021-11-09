@@ -133,3 +133,7 @@ puts "Generating wrapper and moving it to hdl directory..."
 make_wrapper -files [get_files $bd_autogen_file] -top
 file copy -force $synth_dir/$project_name.gen/sources_1/bd/$bd_name/hdl/$bd_name\_wrapper.vhd $hdl_dir/$bd_name\_wrapper.vhd
 read_vhdl $hdl_dir/$bd_name\_wrapper.vhd
+
+puts "-------------"
+puts "END OF CREATE SCRIPT"
+puts "-------------"
