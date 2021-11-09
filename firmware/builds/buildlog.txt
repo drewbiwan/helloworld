@@ -1,3 +1,0 @@
-buildlog.txt
-DO NOT EDIT
-This is an automatically generated file. See buildlog.tcl for details

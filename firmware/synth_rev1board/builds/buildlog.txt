@@ -1,5 +1,0 @@
-buildlog.txt
-DO NOT EDIT
-This is an automatically generated file. See buildlog.tcl for details
-PRESYNTH: 0 0 1 21110915 618ADA49 refs/heads/main 37ce3b2bf2da752a0fac49e62e27248cc6d71656 TEMP 
-POSTSYNTH: 0 0 1 TEMP v0.0.1 helloworld_rev1board_0_0_1 
