@@ -107,9 +107,9 @@ write_hw_platform -fixed -include_bit -force -file $build_dir/$bitstream_string.
 puts "-------------"
 
 # Update log
-set tag_string [format "v%s.%s.%s" $major_version $minor_version $new_build_number]
-set log_format "POSTSYNTH: %s %s %s %s %s %s"
-set postsynth_buildlog_list [format $log_format $major_version $minor_version $new_build_number $configuration_string $tag_string $bitstream_string]
+set tag_string [format "%sv%s.%s.%s" $configuration_name $major_version $minor_version $new_build_number]
+set log_format "POSTSYNTH: %s %s %s %s %s %s %s"
+set postsynth_buildlog_list [format $log_format $configuration_name $major_version $minor_version $new_build_number $configuration_string $tag_string $bitstream_string]
 append_buildlog $build_dir/buildlog.txt $postsynth_buildlog_list
 
 puts "-------------"
