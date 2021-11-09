@@ -70,8 +70,15 @@ open_bd_design $synth_dir/$project_name.srcs/sources_1/bd/$bd_name/$bd_name.bd
 write_bd_tcl -force $bd_script
 puts "-------------"
 
-# Auto commit
-exec git add $firmware_dir --renormalize
+# Auto commit files related to this config only
+exec git add $contraints_dir -u
+exec git add $hdl_dir -u
+exec git add $ip_dir -u
+exec git add $bd_dir -u
+exec git add $buildlog_dir -u
+exec git add $shared_hdl_dir -u
+exec git add $shared_ip_dir -u
+exec git add $shared_bd_dir -u
 exec git commit -m "PRE-SYNTHESIS AUTOCOMMIT. Ran from compile.tcl."
 
 puts "-------------"
@@ -107,7 +114,7 @@ write_hw_platform -fixed -include_bit -force -file $bitstream_dir/$bitstream_str
 puts "-------------"
 
 # Update log
-set tag_string [format "%sv%s.%s.%s" $configuration_name $major_version $minor_version $new_build_number]
+set tag_string [format "%s_v%s.%s.%s" $configuration_name $major_version $minor_version $new_build_number]
 set log_format "POSTSYNTH: %s %s %s %s %s %s %s"
 set postsynth_buildlog_list [format $log_format $configuration_name $major_version $minor_version $new_build_number $configuration_string $tag_string $bitstream_string]
 append_buildlog $buildlog_dir/buildlog.txt $postsynth_buildlog_list
@@ -119,7 +126,15 @@ puts "-------------"
 
 # Commit to git
 # exec git diff
-exec git add $firmware_dir 
+exec git add $contraints_dir -u
+exec git add $hdl_dir -u
+exec git add $ip_dir -u
+exec git add $bd_dir -u
+exec git add $buildlog_dir -u
+exec git add $shared_hdl_dir -u
+exec git add $shared_ip_dir -u
+exec git add $shared_bd_dir -u
+exec git add $bitstream_dir -u
 exec git commit --amend -m "POST-SYNTHESIS AUTOCOMMIT. Ran from compile.tcl."
 exec git tag $tag_string
 #exec "git --help"

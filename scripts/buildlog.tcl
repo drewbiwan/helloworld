@@ -104,7 +104,7 @@ proc generate_build_pkg {build_pkg_file buildlog_list} {
     puts  $build_pkg_f "use ieee.numeric_std.all;"
     puts  $build_pkg_f "use ieee.std_logic_1164.all;"
     puts  $build_pkg_f "package build_pkg is"
-    puts  $build_pkg_f [format "    constant CONFIGURATION_NAME_C   : integer := \"%s\;" [lindex $buildlog_list 1]]
+    puts  $build_pkg_f [format "    constant CONFIGURATION_NAME_C   : string := \"%s\";" [lindex $buildlog_list 1]]
     puts  $build_pkg_f [format "    constant MAJOR_VERSON_C         : integer := %s;" [lindex $buildlog_list 2]]
     puts  $build_pkg_f [format "    constant MINOR_VERSON_C         : integer := %s;" [lindex $buildlog_list 3]]
     puts  $build_pkg_f [format "    constant BUILD_NUMBER_C         : integer := %s;" [lindex $buildlog_list 4]]
