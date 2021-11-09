@@ -6,3 +6,8 @@ PRESYNTH: devboard 0 0 1 21110916 618AE285 refs/heads/main 8664964b075b622c04866
 PRESYNTH: devboard 0 0 1 21110916 618AE39E refs/heads/main 62c0b533ffe66ce225600acd481cbbeaa36c3765 DEV0 
 PRESYNTH: devboard 0 0 1 21110916 618AE461 refs/heads/main dec4646d72ac77c85849fdde6e79cbceb9db1d6e DEV0 
 POSTSYNTH: devboard 0 0 1 DEV0 devboardv0.0.1 helloworld_devboard_0_0_1 
+PRESYNTH: rev1board 0 0 1 21110916 618AE60A refs/heads/main 2f9e85d40b96f7f8deaa557e80acf5c9dd0c5f5c TEMP 
+PRESYNTH: rev1board 0 0 1 21110916 618AE71F refs/heads/main 7f13403d23fa68e7f44406d4217ac09921331216 TEMP 
+PRESYNTH: rev1board 0 0 1 21110916 618AE879 refs/heads/main a567d484f24d9af320bce93c633afa663d93be62 TEMP 
+PRESYNTH: rev1board 0 0 1 21110916 618AE8EC refs/heads/main a567d484f24d9af320bce93c633afa663d93be62 TEMP 
+POSTSYNTH: rev1board 0 0 1 TEMP rev1board_v0.0.1 helloworld_rev1board_0_0_1 
