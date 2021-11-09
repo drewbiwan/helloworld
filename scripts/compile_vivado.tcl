@@ -31,7 +31,7 @@ source [pwd]/scripts/buildlog.tcl
 set old_buildlog_list [get_last_buildlog $buildlog_dir/buildlog.txt]
 
 # Update package file, and append log file with new info
-set old_build_number [lindex $old_buildlog_list 3]
+set old_build_number [lindex $old_buildlog_list 4]
 set new_build_number [expr $old_build_number + 1]
 set presynth_buildlog_list [generate_presynth_buildlog $configuration_name $new_build_number $major_version $minor_version $configuration_string]
 
@@ -71,10 +71,7 @@ write_bd_tcl -force $bd_script
 puts "-------------"
 
 # Auto commit files related to this config only
-exec git add $contraints_dir -u
-exec git add $hdl_dir -u
-exec git add $ip_dir -u
-exec git add $bd_dir -u
+exec git add $synth_dir -u
 exec git add $buildlog_dir -u
 exec git add $shared_hdl_dir -u
 exec git add $shared_ip_dir -u
