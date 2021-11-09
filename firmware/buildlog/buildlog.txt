@@ -11,3 +11,4 @@ PRESYNTH: rev1board 0 0 1 21110916 618AE71F refs/heads/main 7f13403d23fa68e7f444
 PRESYNTH: rev1board 0 0 1 21110916 618AE879 refs/heads/main a567d484f24d9af320bce93c633afa663d93be62 TEMP 
 PRESYNTH: rev1board 0 0 1 21110916 618AE8EC refs/heads/main a567d484f24d9af320bce93c633afa663d93be62 TEMP 
 POSTSYNTH: rev1board 0 0 1 TEMP rev1board_v0.0.1 helloworld_rev1board_0_0_1 
+PRESYNTH: rev1board 0 0 2 21110916 618AEA65 refs/heads/main dd717ba4aaf802e8a858f39b30362d2317b0384a TEMP 
