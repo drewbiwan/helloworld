@@ -80,17 +80,17 @@ launch_runs impl_1 -to_step write_bitstream  -jobs $num_jobs
 wait_on_run impl_1
 
 # Move bitstream
+puts "-------------"
+puts "Creating and renaming Bitstreams..."
 set bitstream_file_format "%s_%s_v%02up%02ub%04"
 set bitstream_string [format "%s_%s_%s_%s_%s" $project_name $hardware_name $major_version $minor_version $new_build_number]
 set bitstream_file $synth_dir/$project_name.runs/impl_1/$top_level
-
-puts "-------------"
-puts "Moving bitstreams"
 puts "From $bitstream_file.bin to $build_dir/$bitstream_string.bin"
 puts "From $bitstream_file.bit to $build_dir/$bitstream_string.bit"
-
+puts "Exporting hardware to $build_dir/$bitstream_string.xsa"
 file copy $bitstream_file.bin $build_dir/$bitstream_string.bin
 file copy $bitstream_file.bit $build_dir/$bitstream_string.bit
+write_hw_platform -fixed -include_bit -force -file $build_dir/$bitstream_string.xsa
 puts "-------------"
 
 # Update log
