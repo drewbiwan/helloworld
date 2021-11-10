@@ -10,7 +10,6 @@ mkdir .\firmware\synth_%1\hdl
 mkdir .\firmware\synth_%1\ip
 
 echo Copying templates into new directory
-copy .\templates\new_configuration\clean.sh .\firmware\synth_%1
 copy .\templates\new_configuration\configuration_settings.tcl .\firmware\synth_%1
 copy .\templates\new_configuration\top.vhd .\firmware\synth_%1\hdl
 copy .\templates\new_configuration\devboard_pins.xdc .\firmware\synth_%1\constraints
