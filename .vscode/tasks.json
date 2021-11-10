@@ -19,13 +19,26 @@
             ]
         },
         {
-            "label": "create_vivado",
+            "label": "create vivado",
             "type": "shell",
             "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create_vivado.tcl ${input:configuration}",
-            "problemMatcher": []
+            "problemMatcher": {
+                "owner": "dcoker",
+                "fileLocation":"absolute",
+                "source": "dcoker",
+                "pattern": {
+                    "regexp": "^(ERROR|CRITICAL WARNING|WARNING):\\s+\\[(\\S+\\s\\S+)\\]\\s(.+)\\[(.*)\\:(\\d+)\\]$",
+                    "severity": 1,
+                    "code": 2,
+                    "message": 3,
+                    "file": 4,
+                    "line": 5
+                },
+
+            }
         },
         {
-            "label": "compile_vivado",
+            "label": "compile vivado",
             "type": "shell",
             "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile_vivado.tcl ${input:configuration}",
             "problemMatcher": {
@@ -72,8 +85,8 @@
             "command": "echo WARNING: [Vivado 12-584] No ports matched 'leds_p[3]'. [F:/gitworkspace/helloworld/firmware/synth_rev1board/constraints/devboard_pins.xdc:1]",
             "problemMatcher": {
                 "owner": "dcoker",
-                "fileLocation":"absolute",
                 "source": "dcoker",
+                "fileLocation":"absolute",
                 "pattern": {
                     "regexp": "^(ERROR|CRITICAL WARNING|WARNING):\\s+\\[(\\S+\\s\\S+)\\]\\s(.+)\\[(.*)\\:(\\d+)\\]$",
                     "severity": 1,
@@ -81,10 +94,9 @@
                     "message": 3,
                     "file": 4,
                     "line": 5
-                },
-
-            }
-        },
+                }
+            },
+        }
     ],
     "inputs": [
         {
