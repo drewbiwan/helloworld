@@ -21,7 +21,7 @@
         {
             "label": "create vivado",
             "type": "shell",
-            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create_vivado.tcl ${input:configuration}",
+            "command": "${cwd}//scripts//run_tcl_vivado.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//create_vivado.tcl ${input:configuration}",
             "problemMatcher": {
                 "owner": "dcoker",
                 "fileLocation":"absolute",
@@ -40,7 +40,7 @@
         {
             "label": "compile vivado",
             "type": "shell",
-            "command": "${cwd}//scripts//run_tcl.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile_vivado.tcl ${input:configuration}",
+            "command": "${cwd}//scripts//run_tcl_vivado.bat C://Xilinx//Vivado//2021.2//bin//vivado ${cwd}//scripts//compile_vivado.tcl ${input:configuration}",
             "problemMatcher": {
                 "owner": "dcoker",
                 "fileLocation":"absolute",
@@ -59,7 +59,7 @@
         {
             "label": "clean vivado",
             "type": "shell",
-            "command": "${cwd}//scripts//clean.bat ${input:configuration}",
+            "command": "${cwd}//scripts//clean_vivado.bat ${input:configuration}",
             "problemMatcher": {
                 "owner": "dcoker",
                 "fileLocation":"absolute",
