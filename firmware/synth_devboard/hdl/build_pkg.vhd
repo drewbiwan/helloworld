@@ -12,10 +12,10 @@ package build_pkg is
     constant CONFIGURATION_NAME_C   : string := "devboard";
     constant MAJOR_VERSON_C         : integer := 0;
     constant MINOR_VERSON_C         : integer := 0;
-    constant BUILD_NUMBER_C         : integer := 1;
-    constant BUILD_TIME_BCD_C       : STD_LOGIC_VECTOR(31 downto 0) := x"21110916";
-    constant BUILD_TIME_EPOCH_C     : STD_LOGIC_VECTOR(31 downto 0) := x"618AE461";
+    constant BUILD_NUMBER_C         : integer := 10;
+    constant BUILD_TIME_BCD_C       : STD_LOGIC_VECTOR(31 downto 0) := x"21110919";
+    constant BUILD_TIME_EPOCH_C     : STD_LOGIC_VECTOR(31 downto 0) := x"618B0ED8";
     constant BRANCH_STRING_C        : string := "refs/heads/main";
-    constant COMMIT_OID_C           : STD_LOGIC_VECTOR(159 downto 0) := x"dec4646d72ac77c85849fdde6e79cbceb9db1d6e";
+    constant COMMIT_OID_C           : STD_LOGIC_VECTOR(159 downto 0) := x"9ab8aa925836baefe66445b729efcc321316d740";
     constant CONFIGURATION_STRING_C : string := "DEV0";
 end build_pkg;
