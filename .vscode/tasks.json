@@ -47,7 +47,18 @@
             "label": "clean vivado",
             "type": "shell",
             "command": "${cwd}//scripts//clean.bat ${input:configuration}",
-            "problemMatcher":[]
+            "problemMatcher": {
+                "owner": "dcoker",
+                "fileLocation":"absolute",
+                "source": "dcoker",
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(\\w:.+)\\s-\\s(.*)$",
+                    "message": 2,
+                    "file": 1,
+                },
+
+            }
         },
         {
             "label": "new_configuration",
