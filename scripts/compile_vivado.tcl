@@ -78,6 +78,7 @@ puts "-------------"
 
 # Auto commit files related to this config only
 exec git add $synth_dir -u
+exec git add $bitstream_dir
 exec git add $buildlog_dir -u
 exec git add $shared_hdl_dir -u
 exec git add $shared_ip_dir -u
