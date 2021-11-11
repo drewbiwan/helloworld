@@ -27,13 +27,26 @@ source $synth_dir/configuration_settings.tcl
 # Load buildlog functions
 source [pwd]/scripts/buildlog.tcl 
 
+puts "-------------"
+puts "Pulling previous build information from $buildlog_dir/buildlog.txt"
 # Pull build information from log
 set old_buildlog_list [get_last_buildlog $buildlog_dir/buildlog.txt]
 
 # Update package file, and append log file with new info
+set old_major_version [lindex $old_buildlog_list 2]
+set old_minor_version [lindex $old_buildlog_list 3]
 set old_build_number [lindex $old_buildlog_list 4]
-set new_build_number [expr $old_build_number + 1]
+
+if {($old_major_version != $major_version) || ($old_major_version != $minor_version)} {
+    puts "New Major/Minor version detected, resetting build number to 0"
+    set new_build_number 0
+} else {
+    set new_build_number [expr $old_build_number + 1]
+}
+
 set presynth_buildlog_list [generate_presynth_buildlog $configuration_name $new_build_number $major_version $minor_version $configuration_string]
+puts "-------------"
+
 
 # Append log with "PRESYNTH:" message
 puts "-------------"
