@@ -63,7 +63,7 @@ architecture bhv of top is
 begin
 
     -- Generate blinky lights from PL clock
-    leds_p  <= std_logic_vector(counter_s(24 downto 21));
+    leds_p  <= std_logic_vector(counter_s(23 downto 20));
     process(clk_s)
     begin
         if rising_edge(clk_s) then

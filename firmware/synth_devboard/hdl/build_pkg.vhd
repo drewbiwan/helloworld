@@ -13,9 +13,9 @@ package build_pkg is
     constant MAJOR_VERSON_C         : integer := 0;
     constant MINOR_VERSON_C         : integer := 1;
     constant BUILD_NUMBER_C         : integer := 0;
-    constant BUILD_TIME_BCD_C       : STD_LOGIC_VECTOR(31 downto 0) := x"21111111";
-    constant BUILD_TIME_EPOCH_C     : STD_LOGIC_VECTOR(31 downto 0) := x"618D4831";
+    constant BUILD_TIME_BCD_C       : STD_LOGIC_VECTOR(31 downto 0) := x"21111112";
+    constant BUILD_TIME_EPOCH_C     : STD_LOGIC_VECTOR(31 downto 0) := x"618D4F77";
     constant BRANCH_STRING_C        : string := "refs/heads/main";
-    constant COMMIT_OID_C           : STD_LOGIC_VECTOR(159 downto 0) := x"0f6de92d2ec2b31359c2ea83c1942d8ab6edd9c5";
+    constant COMMIT_OID_C           : STD_LOGIC_VECTOR(159 downto 0) := x"831e5af54e8ff4a4d92c4dc1ef5a941ea848c65d";
     constant CONFIGURATION_STRING_C : string := "DEV0";
 end build_pkg;
