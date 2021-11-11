@@ -14,7 +14,7 @@ proc get_last_buildlog {build_file} {
         while { [gets $build_log_f data] >= 0 } {
             set line_list [split $data " "]
             # check for valid log data
-            if {([lindex $line_list 0]  == "PRESYNTH:") || ([lindex $line_list 0]  == "POSTSYNTH:"})} { 
+            if {([lindex $line_list 0]  == "PRESYNTH:") || ([lindex $line_list 0]  == "POSTSYNTH:")} { 
                 set buildlog_list $line_list
             } 
         }
