@@ -22,3 +22,4 @@ PRESYNTH: rev1board 0 0 9 21110918 618B0669 refs/heads/main c8a63ee69510c5982973
 PRESYNTH: devboard 0 0 10 21110919 618B0ED8 refs/heads/main 9ab8aa925836baefe66445b729efcc321316d740 DEV0 
 POSTSYNTH: devboard 0 0 10 DEV0 devboard_v0.0.10 helloworld_devboard_0_0_10 
 PRESYNTH: devboard 0 0 11 21111110 618D365C refs/heads/main 2f1c966b877822ffd14e578767a07e61973b9f50 DEV0 
+PRESYNTH: devboard 0 0 12 21111110 618D368E refs/heads/main 90f07cfa9f8a8289430f08bc44689cb8fc495f54 DEV0 
