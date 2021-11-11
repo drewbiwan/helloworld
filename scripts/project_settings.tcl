@@ -9,7 +9,7 @@ set project_name helloworld
 
 # Version information. These are updated manually
 set major_version 0
-set minor_version 0
+set minor_version 1
 
 # Run parameters
 set num_jobs 8
