@@ -37,12 +37,18 @@ set old_major_version [lindex $old_buildlog_list 2]
 set old_minor_version [lindex $old_buildlog_list 3]
 set old_build_number [lindex $old_buildlog_list 4]
 
-if {($old_major_version != $major_version) || ($old_major_version != $minor_version)} {
+if {($old_major_version == $major_version) && ($old_minor_version == $minor_version)} {
+    # versions are the same. increment as usual
+    set new_build_number [expr $old_build_number + 1]
+} else {
+    # versions have changed. reset
     puts "New Major/Minor version detected, resetting build number to 0"
     set new_build_number 0
-} else {
-    set new_build_number [expr $old_build_number + 1]
 }
+
+puts "Major version:    $old_major_version -> $major_version"
+puts "Minor version:    $old_minor_version -> $minor_version"
+puts "Build:            $old_build_number -> $new_build_number"
 
 set presynth_buildlog_list [generate_presynth_buildlog $configuration_name $new_build_number $major_version $minor_version $configuration_string]
 puts "-------------"
@@ -143,6 +149,8 @@ puts "-------------"
 
 # Commit to git
 # exec git diff
+puts "-------------"
+puts "Post-Synth Autocommit:"
 exec git add $contraints_dir -u
 exec git add $hdl_dir -u --renormalize
 exec git add $ip_dir -u
@@ -151,11 +159,12 @@ exec git add $buildlog_dir -u
 exec git add $shared_hdl_dir -u
 exec git add $shared_ip_dir -u
 exec git add $shared_bd_dir -u
-exec git add $bitstream_dir -u
+exec git add $bitstream_dir
 exec git commit --amend -m "POST-SYNTHESIS AUTOCOMMIT. Ran from compile.tcl."
 exec git tag $tag_string
 #exec "git --help"
 #exec "git commit -m \"AUTOCOMMIT. Run from compile.tcl, after synthesis\""
+puts "-------------"
 
 
 puts "-------------"
