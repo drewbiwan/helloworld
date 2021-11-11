@@ -42,16 +42,28 @@ end top;
 
 architecture bhv of top is
     signal clk_s        : std_logic;
-    signal counter_s    : unsigned(7 downto 0);
+    signal counter_s    : unsigned(31 downto 0);
     
+
+    -- GPIO PS <-> PL
     signal gpo_0_s : STD_LOGIC_VECTOR(31 downto 0);
     signal gpo_1_s : STD_LOGIC_VECTOR(31 downto 0);
     signal gpi_0_s : STD_LOGIC_VECTOR(31 downto 0);
     signal gpi_1_s : STD_LOGIC_VECTOR(31 downto 0);
 
-begin
-    leds_p  <= std_logic_vector(counter_s(3 downto 0));
+    -- AXI memory mapped register controller
+    signal regmap_addr_s    : std_logic_vector(12 downto 0);
+    signal regmap_din_s     : std_logic_vector(31 downto 0);
+    signal regmap_dout_s    : std_logic_vector(31 downto 0);
+    signal regmap_we_s      : std_logic_vector(3 downto 0);
+    signal regmap_en_s      : std_logic;
+    signal regmap_rst_s     : std_logic;
+    signal regmap_clk_s     : std_logic;
 
+begin
+
+    -- Generate blinky lights from PL clock
+    leds_p  <= std_logic_vector(counter_s(24 downto 21));
     process(clk_s)
     begin
         if rising_edge(clk_s) then
@@ -59,10 +71,18 @@ begin
         end if;
     end process;
 
-
+    -- Zynq BD
     zynq_inst : entity work.zynq_bd_wrapper
     port map
     (
+        FCLK_CLK0           => clk_s,
+        REGMAP_addr         => regmap_addr_s,
+        REGMAP_clk          => regmap_clk_s,
+        REGMAP_din          => regmap_din_s,
+        REGMAP_dout         => regmap_dout_s,
+        REGMAP_en           => regmap_en_s,
+        REGMAP_rst          => regmap_rst_s,
+        REGMAP_we           => regmap_we_s,
         DDR_addr            => DDR_addr,
         DDR_ba              => DDR_ba,
         DDR_cas_n           => DDR_cas_n,
@@ -78,7 +98,6 @@ begin
         DDR_ras_n           => DDR_ras_n,
         DDR_reset_n         => DDR_reset_n,
         DDR_we_n            => DDR_we_n,
-        FCLK_CLK0           => clk_s,
         FIXED_IO_ddr_vrn    => FIXED_IO_ddr_vrn,
         FIXED_IO_ddr_vrp    => FIXED_IO_ddr_vrp,
         FIXED_IO_mio        => FIXED_IO_mio,
@@ -91,6 +110,12 @@ begin
         gpio_rtl_3_tri_i    => gpi_1_s
     );
 
+
+    --Placeholder loopbacks
     gpi_0_s <= gpo_0_s;
     gpi_1_s <= gpo_1_s;
+
+    regmap_dout_s <= regmap_din_s;
+
+
 end bhv;
