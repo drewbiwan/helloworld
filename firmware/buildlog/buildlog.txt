@@ -32,3 +32,5 @@ POSTSYNTH: devboard 0 1 0 DEV0 devboard_v0.1.0 helloworld_devboard_0_1_0
 PRESYNTH: devboard 0 1 0 21111112 618D5194 refs/heads/main ae8a00e8fb1a3359b33a8bfeae030bff35d2bfd8 DEV0 
 PRESYNTH: devboard 0 1 1 21111112 618D521E refs/heads/main e8a13aed6b17426c1cd228fd0f0e82354b242114 DEV0 
 POSTSYNTH: devboard 0 1 1 DEV0 devboard_v0.1.1 helloworld_devboard_0_1_1 
+PRESYNTH: devboard 0 1 2 21111115 618D788C refs/heads/main 5433a170ad67142191a4579df481426559379475 DEV0 
+POSTSYNTH: devboard 0 1 2 DEV0 devboard_v0.1.2 helloworld_devboard_0_1_2 
