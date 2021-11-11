@@ -71,3 +71,7 @@ Format of git tag is v{major}.{minor}.{buildnum}
 - problem matcher
 - tcl error handling
     - with problem matcher
+- sim
+    - directory
+    - automation, scripts
+    - tasks
