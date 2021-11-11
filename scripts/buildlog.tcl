@@ -7,34 +7,28 @@
 # attempts to read last valid line of buildlog.txt
 # if there are no valid lines or no file, it will generate a new file with header and return 0
 proc get_last_buildlog {build_file} {
-    set buildlog_list {"LOG:" 0 0 0 0 0 0 0 0}
+    set buildlog_list {"NEWLOG:" -1 -1 -1 0 0 0 0 0}
     if {[file exists $build_file] == 1} {
         set build_log_f [open $build_file r]
-        set last_build_number 0
         # run through log file, only store the last
         while { [gets $build_log_f data] >= 0 } {
             set line_list [split $data " "]
             # check for valid log data
-            if {[lindex $line_list 0]  == "PRESYNTH:"} { 
+            if {([lindex $line_list 0]  == "PRESYNTH:") || ([lindex $line_list 0]  == "POSTSYNTH:"})} { 
                 set buildlog_list $line_list
-                set last_build_number [lindex $buildlog_list 4]
-            } elseif {[lindex $line_list 0]  == "POSTSYNTH:"} {
-                set buildlog_list $line_list
-                set last_build_number [lindex $buildlog_list 4]
             } 
         }
         close $build_log_f
     } else {
-        # If no logs were found, start fresh
+        # No logs were found, start fresh
         set build_log_f [open $build_file w+]
         puts -nonewline "WARNING: No build log found at "
         puts $build_file
         puts "New file will be generated, and builds will start at 1"
-        set last_build_number 0
         puts $build_log_f "buildlog.txt"
         puts $build_log_f "DO NOT EDIT"
         puts $build_log_f "This is an automatically generated file. See buildlog.tcl for details"
-        set buildlog_list {"LOG:" 0 0 0 0 0 0 0 0}
+        set buildlog_list {"NEWLOG:" -1 -1 -1 0 0 0 0 0}
         close $build_log_f
     }
     return $buildlog_list
