@@ -11,11 +11,11 @@ use ieee.std_logic_1164.all;
 package build_pkg is
     constant CONFIGURATION_NAME_C   : string := "devboard";
     constant MAJOR_VERSON_C         : integer := 0;
-    constant MINOR_VERSON_C         : integer := 0;
-    constant BUILD_NUMBER_C         : integer := 13;
-    constant BUILD_TIME_BCD_C       : STD_LOGIC_VECTOR(31 downto 0) := x"21111110";
-    constant BUILD_TIME_EPOCH_C     : STD_LOGIC_VECTOR(31 downto 0) := x"618D3BBF";
+    constant MINOR_VERSON_C         : integer := 1;
+    constant BUILD_NUMBER_C         : integer := 0;
+    constant BUILD_TIME_BCD_C       : STD_LOGIC_VECTOR(31 downto 0) := x"21111111";
+    constant BUILD_TIME_EPOCH_C     : STD_LOGIC_VECTOR(31 downto 0) := x"618D4831";
     constant BRANCH_STRING_C        : string := "refs/heads/main";
-    constant COMMIT_OID_C           : STD_LOGIC_VECTOR(159 downto 0) := x"78ee5399968cb5c473a5b7e24127854c88a145ae";
+    constant COMMIT_OID_C           : STD_LOGIC_VECTOR(159 downto 0) := x"0f6de92d2ec2b31359c2ea83c1942d8ab6edd9c5";
     constant CONFIGURATION_STRING_C : string := "DEV0";
 end build_pkg;
