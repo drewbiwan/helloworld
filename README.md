@@ -36,6 +36,9 @@ Format of git tag is v{major}.{minor}.{buildnum}
 
 ## Processes
 
+### Firmware design process
+
+
 ### General build framework
 . Vivado builds HDL into bitstreams (bit, bin, xsa)
 . Vitis SDK creates platform/domain based on xsa file
@@ -65,4 +68,6 @@ Format of git tag is v{major}.{minor}.{buildnum}
 - document
 - create dir structure script
 - embedded c dir structure
-- problem catcher
+- problem matcher
+- tcl error handling
+    - with problem matcher
